@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+.headerIcons {
+  width: 96%;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transform: translateY(-400px);
+  margin-left: 20px;
+
+  &__carticon {
+    position: relative;
+    margin-top: 8px;
+  }
+
+  &__cart-counter {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    padding: 1px;
+    background-color: #E5674E;
+    font-size: 12px;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    position: absolute;
+    top: 26px;
+    left: 320px;
+    font-family: "PT Serif", serif;
+    font-weight: bold;
+    font-style: normal;
+  }
+}
+
+.cart-icons-wrapper {
+    margin-top: 15px;
+}
