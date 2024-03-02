@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&family=Work+Sans&display=swap");
+
+.home-container {
+  height: 41.688rem;
+  width: 23.438rem;
+  background-color: #38846d;
+  /*  @include flex($justify:center, $align:center); */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  &__image {
+    width: 64px;
+    z-index: 10;
+   margin-top: 12px;
+  }
+
+  &__text > h1 {
+    color: #ffffff;
+    font-size: 42px;
+    font-family: "Rufina", serif;
+    font-weight: 700;
+    font-style: normal;
+   
+  }
+
+  &__text > h2 {
+    color: #ffffff;
+    font-family: "Work Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 9px;
+    text-align: center;
+    letter-spacing: 2.7px;
+  }
+
+  &__frame-left {
+    height: 41.688rem;
+    width: 10.563rem;
+    position: absolute;
+    right: 116px;
+    transform: translateY(-405px);
+   z-index: 1;
+  }
+  &__frame-right {
+    height: 41.688rem;
+    width: 8.938rem;
+    position: absolute;
+   left: 145px;
+    transform: translateY(-405px);
+   z-index: 1;
+  }
+}

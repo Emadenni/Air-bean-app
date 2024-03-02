@@ -7,7 +7,7 @@ import Cart from "./pages/Cart";
 import Status from "./pages/Status";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
-import "./pages/main.scss"
+import "./main.scss"
 
 const router = createBrowserRouter([
   {
