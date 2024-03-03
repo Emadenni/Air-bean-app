@@ -17,7 +17,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
   margin-left: 15px;
 
   &__carticon {
@@ -48,4 +47,14 @@
 
 .cart-icons-wrapper {
   margin-top: 15px;
+}
+
+.blur-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px); // Regola il valore di sfocatura a tuo piacimento
+  z-index: 10; // Assicurati che l'elemento sia sopra il menu
 }

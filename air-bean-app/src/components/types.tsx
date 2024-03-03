@@ -9,3 +9,8 @@ url: string;
 }
 
 export type NavListType= NavItemType[];
+
+export interface NavProps {
+    handleMenuToggle: () => void;
+  }
+  
