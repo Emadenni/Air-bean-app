@@ -1,13 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+.inMenu  .headerIcons {
+  transform: translateY(-130px);
+
+}
+.inAbout  .headerIcons {
+  transform: translateY(-130px);
+}
+
+.inAbout  .headerIcons__carticon {
+  display: none;
+}
+
+
 
 .headerIcons {
-  width: 96%;
+  width: 97%;
   z-index: 2;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transform: translateY(-400px);
-  margin-left: 20px;
+  
+  margin-left: 15px;
 
   &__carticon {
     position: relative;
@@ -19,7 +33,7 @@
     height: 14px;
     border-radius: 50%;
     padding: 1px;
-    background-color: #E5674E;
+    background-color: #e5674e;
     font-size: 12px;
     padding: 12px;
     display: flex;
@@ -36,5 +50,5 @@
 }
 
 .cart-icons-wrapper {
-    margin-top: 15px;
+  margin-top: 15px;
 }

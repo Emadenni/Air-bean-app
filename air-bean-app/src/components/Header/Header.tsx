@@ -19,7 +19,7 @@ const Header = () => {
     <div className="headerIcons">
       <img src={navicon} alt="headerIcons__navicon" onClick={handleMenuToggle} />
 
-      <div className="cart-icons-wrapper">
+      <div className="cart-icons-wrapper ">
         <img src={carticon} alt="headerIcons__carticon" />
         <p className="headerIcons__cart-counter">0</p>
       </div>

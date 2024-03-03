@@ -21,7 +21,9 @@ const Menu = () => {
 
   return(
   <div className="menu-container">
+    <div className="inMenu">
     <Header />
+    </div>
     <Footer />
   </div>
   )
