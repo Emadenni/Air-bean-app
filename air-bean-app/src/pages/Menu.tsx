@@ -3,7 +3,11 @@ import "../pages/menu.scss";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer.";
 
+
+
+
 const Menu = () => {
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {

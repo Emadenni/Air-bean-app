@@ -13,4 +13,7 @@ export type NavListType= NavItemType[];
 export interface NavProps {
     handleMenuToggle: () => void;
   }
+export interface CartProps {
+    handleToggleCart: () => void;
+  }
   

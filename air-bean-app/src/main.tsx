@@ -24,7 +24,9 @@ const router = createBrowserRouter([
   },
   {
     path: "/cart",
-    element: <Cart />,
+    element: <Cart handleToggleCart={function (): void {
+      throw new Error("Function not implemented.");
+    } } />,
   },
   {
     path: "/status",
