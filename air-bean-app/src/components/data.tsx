@@ -1,6 +1,5 @@
-import React from 'react'; 
 
-export const navListProps = [
+export const navList = [
     { id: 1, title: "Meny", url:"/menu"},
     { id: 2, title: "Vårt kaffe", url:"/about"},
     { id: 3, title: "Min profil", url:"/login"},
