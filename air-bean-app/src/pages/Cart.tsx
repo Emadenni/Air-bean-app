@@ -3,6 +3,7 @@ import arrowUp from "../assets/images/arrow-up.svg";
 import vectorUp from "../assets/images/vector-up.svg";
 import vectorDown from "../assets/images/vector-down.svg";
 import { CartProps } from "../components/types";
+import close from "../assets/images/close.png";
 
 const Cart: React.FC<CartProps> = ({ handleToggleCart }: CartProps) => {
   return (
@@ -63,7 +64,9 @@ const Cart: React.FC<CartProps> = ({ handleToggleCart }: CartProps) => {
           <p className="cart-container-total__dots">...............................</p>{" "}
           <p className="cart-container-total__price">343 kr</p>
         </div>
+        <button className="toCashButton">Take my money!</button>
       </div>
+      <img className="nav-container__close-button" src={close} alt="close button" onClick={handleToggleCart} />
     </div>
   );
 };
