@@ -40,8 +40,10 @@ const Menu = () => {
                 <h2>{product.title}</h2>
                 <p className="menu-list__item-desc">{product.desc}</p>
                 </div>
-                <p className="cart-container__item-dots">..................................</p>
+                <aside >
+                <p className="menu-container__item-dots">...............................</p>
                 <p className="menu-list__item-price">{product.price} kr</p>
+                </aside>
               </li>
             ))}
         </ul>
