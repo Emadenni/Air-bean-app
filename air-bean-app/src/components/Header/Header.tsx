@@ -12,15 +12,15 @@ import Cart from "../../pages/Cart";
 const Header = () => {
   const location = useLocation();
   const isAboutPage = location.pathname === "/about";
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const handleToggleCart = () => {
     setIsCartOpen((prevState) => !prevState);
   };
 
-  const handleMenuToggle = () => {
-    setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
+  const handleToggleNav = () => {
+    setIsNavOpen((prevIsNavOpen) => !prevIsNavOpen);
   };
 
   return (
@@ -28,7 +28,7 @@ const Header = () => {
       <img src={top} alt="top" />
 
       <div className="headerIcons">
-        <img src={navicon} alt="navicon" onClick={handleMenuToggle} />
+        <img src={navicon} alt="navicon" onClick={handleToggleNav} />
 
         {!isAboutPage && (
           <div className="cart-icons-wrapper">
@@ -39,10 +39,10 @@ const Header = () => {
         )}
       </div>
 
-      {isMenuOpen && <Nav handleMenuToggle={handleMenuToggle} />}
+      {isNavOpen && <Nav handleMenuToggle={handleToggleNav} />}
       {isCartOpen && <Cart handleToggleCart={handleToggleCart} />}
 
-      {isMenuOpen && <div className="blur-overlay"></div>}
+      {isNavOpen && <div className="blur-overlay"></div>}
       {isCartOpen && <div className="blur-overlay2"></div>}
     </>
   );
