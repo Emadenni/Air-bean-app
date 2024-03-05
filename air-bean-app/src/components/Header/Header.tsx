@@ -8,6 +8,7 @@ import close from "../../assets/images/close.png";
 import "../Header/header.scss";
 import Nav from "../Nav/Nav";
 import Cart from "../../pages/Cart";
+import setPageTop from "../Nav/Nav"
 
 
 

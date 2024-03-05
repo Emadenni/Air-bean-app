@@ -6,7 +6,8 @@
   bottom: 70px;
   left: 18px;
   color: #2f2926;
-
+  opacity: 0;
+  animation: fadeInAnimation 0.5s ease forwards;
 
   &__item {
     display: flex;
@@ -28,12 +29,10 @@
     > span {
       font-family: "Work Sans", sans-serif;
       font-optical-sizing: auto;
-      font-size: 14px;
       font-style: normal;
       font-size: 12px;
       font-weight: 400;
       line-height: 130%;
-  
     }
   }
   &__item-dots {
@@ -135,10 +134,9 @@
   font-family: "PT Serif", serif;
   font-weight: bold;
   font-style: normal;
-  color:#FFFFFF ;
+  color: #ffffff;
   font-size: 24px;
-  background-color:#2F2926;
+  background-color: #2f2926;
   padding: 10px;
   border-radius: 50px;
-
 }

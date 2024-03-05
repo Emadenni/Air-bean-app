@@ -1,11 +1,83 @@
 .about-container {
   height: 66.313rem;
   width: 23.438rem;
-  background-color: #ffffff;
+  background-color: #f3e4e1;
   /*  @include flex($justify:center, $align:center); */
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  gap: 30px;
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 64rem;
+    padding: 0 0 5px 50px;
+    color: #2f2926;
+
+    > h1 {
+      font-family: "PT Serif", serif;
+      font-style: normal;
+      line-height: 120%;
+      font-weight: bold;
+      font-size: 42px;
+      align-self: flex-start;
+      margin-left: -20px;
+    }
+
+    > h2 {
+      font-family: "Work Sans", sans-serif;
+      font-optical-sizing: auto;
+      font-style: normal;
+      font-size: 14px;
+      font-weight: 600px;
+      line-height: 160%;
+      margin: 12px 0;
+    }
+
+    > p {
+      font-family: "Work Sans", sans-serif;
+      font-optical-sizing: auto;
+      font-style: normal;
+      font-size: 12px;
+      font-weight: 600px;
+      line-height: 160%;
+      margin:6px 10px 11px 0;
+    }
+  }
+}
+
+figure {
+  display: flex;
+  flex-direction: column;
+  margin-top: 60px;
+  align-items: center;
+
+  >img {
+  width: 74px;
+  margin-right: 58px;
+  }
+
+  figcaption > h3 {
+    font-family: "PT Serif", serif;
+    font-style: normal;
+    line-height: 160%;
+    font-weight: bold;
+    font-size: 22px;
+    margin-right: 54px;
+    
+ 
+  }
+  figcaption > p {
+    font-family: "Work Sans", sans-serif;
+      font-optical-sizing: auto;
+      font-style: normal;
+      font-size: 12px;
+      font-weight: 500px;
+      line-height: 160%;
+  }
 }

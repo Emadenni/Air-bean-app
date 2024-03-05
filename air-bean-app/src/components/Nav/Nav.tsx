@@ -1,15 +1,11 @@
 import React from "react";
-import { NavProps } from '../types';
+import { NavProps } from "../types";
 import { navList } from "../data";
 import "../Nav/nav.scss";
 import close from "../../assets/images/close.png";
 
-
 const Nav: React.FC<NavProps> = ({ handleMenuToggle }: NavProps) => {
-
-  
   return (
-   
     <div className="nav-container">
       <img className="nav-container__close-button" src={close} alt="close button" onClick={handleMenuToggle} />
 
@@ -22,7 +18,6 @@ const Nav: React.FC<NavProps> = ({ handleMenuToggle }: NavProps) => {
         ))}
       </ul>
     </div>
-    
   );
 };
 
