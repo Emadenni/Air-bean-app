@@ -17,3 +17,9 @@ export interface CartProps {
     handleToggleCart: () => void;
   }
   
+  export interface product {
+id: number,
+title:string,
+desc:string,
+price:number
+  } 

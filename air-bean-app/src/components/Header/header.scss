@@ -1,8 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 .inMenu .headerIcons {
-  transform: translateY(-130px);
+  transform: translateY(-80px);
+ height: 0;
+
 }
+
+.inMenu {
+  height: 130px;
+}
+
+
 .inAbout .headerIcons {
   transform: translateY(-103px);
   margin-left: 19px;
@@ -34,7 +42,7 @@
     align-items: center;
     color: white;
     position: absolute;
-    top: 26px;
+    bottom: 2px;
     left: 320px;
     font-family: "PT Serif", serif;
     font-weight: bold;

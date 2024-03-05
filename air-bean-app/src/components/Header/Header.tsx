@@ -9,6 +9,8 @@ import "../Header/header.scss";
 import Nav from "../Nav/Nav";
 import Cart from "../../pages/Cart";
 
+
+
 const Header = () => {
   const location = useLocation();
   const isAboutPage = location.pathname === "/about";
