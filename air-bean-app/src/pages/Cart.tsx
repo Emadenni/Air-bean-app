@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useCartStore } from "../store/cartStore";
+import { useCountStore } from "../store/cartStore";
 import "../pages/cart.scss";
 import arrowUp from "../assets/images/arrow-up.svg";
 import vectorUp from "../assets/images/vector-up.svg";
@@ -9,13 +10,23 @@ import { CartProps, cartProduct } from "../components/types";
 import close from "../assets/images/close.png";
 
 const Cart: React.FC<CartProps> = ({ handleToggleCart }: CartProps) => {
+  const { cart, removeProduct, total, updateQuantity, emptyCart } = useCartStore();
+  const { increment, decrement, resetCounts } = useCountStore();
 
-  const { cart/* , total, updateQuantity, removeProduct, emptyCart  */} = useCartStore();
+  const handleDecrement = (productId: string) => {
+    const product = cart.find((item) => item.id === productId);
+    if (product && product.quantity > 0) {
+      decrement();
+      updateQuantity(productId, -1);
+    }
+  };
 
+  const handleIncrement = (productId: string) => {
+    increment();
+    updateQuantity(productId, 1);
+  };
 
-  useEffect(() => {
-   
-  }, [cart]);
+  useEffect(() => {}, [cart]);
 
   return (
     <div className="cart-container">
@@ -24,50 +35,22 @@ const Cart: React.FC<CartProps> = ({ handleToggleCart }: CartProps) => {
       <div className="cart-container__list">
         <h1>Din beställning</h1>
         <ul>
-        {cart.map((product: cartProduct) => (
-          <li key={product.id} className="cart-container__item" >
-            <p className="cart-container__item-p">
-              {product.title}
-              <span>{product.price} kr</span>
-            </p>
-            <p className="cart-container__item-dots">..................................</p>
+          {cart.map((product: cartProduct) => (
+            <li key={product.id} className="cart-container__item">
+              <p className="cart-container__item-p">
+                {product.title}
+                <span>{product.price} kr</span>
+              </p>
+              <p className="cart-container__item-dots">..................................</p>
 
-            <div className="cart-container__quantityDiv">
-              <img src={vectorUp} alt="vector" />
-              <p>{product.quantity}</p>
-              <img src={vectorDown} alt="vector" />
-            </div>
-            {<img src={remove} alt="remove" className="remove-icon" />}
-          </li>
-            ))}
-          {/* <li className="cart-container__item">
-            <p className="cart-container__item-p">
-              Bryggkaffe
-              <span>98 kr</span>
-            </p>
-            <p className="cart-container__item-dots">..................................</p>
-
-            <div className="cart-container__quantityDiv">
-              <img src={vectorUp} alt="vector" />
-              <p>2</p>
-              <img src={vectorDown} alt="vector" />
-            </div>
-          </li>
-          <li className="cart-container__item">
-            <p className="cart-container__item-p">
-              Bryggkaffe
-              <span>98 kr</span>
-            </p>
-            <p className="cart-container__item-dots">..................................</p>
-
-            <div className="cart-container__quantityDiv">
-              <img src={vectorUp} alt="vector" />
-              <p>2</p>
-              <img src={vectorDown} alt="vector" />
-            </div>
-          </li> */}
-
-          {/* da dinamicizzare */}
+              <div className="cart-container__quantityDiv">
+                <img src={vectorUp} alt="vector" onClick={() => handleIncrement(product.id)} />
+                <p>{product.quantity}</p>
+                <img src={vectorDown} alt="vector" onClick={() => handleDecrement(product.id)} />
+              </div>
+              {<img src={remove} alt="remove" className="remove-icon" onClick={() => removeProduct(product.id)} />}
+            </li>
+          ))}
         </ul>
 
         <div className="cart-container-total">
@@ -76,11 +59,12 @@ const Cart: React.FC<CartProps> = ({ handleToggleCart }: CartProps) => {
             <span>inkl moms + drönarleverans</span>
           </p>
           <p className="cart-container-total__dots">...............................</p>{" "}
-          <p className="cart-container-total__price">343 kr</p>
+          <p className="cart-container-total__price">{total} kr</p>
         </div>
+        <button className="clearCartButton" onClick={emptyCart}>Remove all products</button>
         <button className="toCashButton">Take my money!</button>
       </div>
-      <img className="nav-container__close-button" src={close} alt="close button" onClick={handleToggleCart} />
+      <img className="cart-container__close-button" src={close} alt="close button" onClick={handleToggleCart} />
     </div>
   );
 };

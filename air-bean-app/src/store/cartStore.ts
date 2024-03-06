@@ -17,57 +17,61 @@ interface CartState {
   };
   
 
-export const useCartStore = create<CartState>((set) => ({
-cart: sessionStorage.getItem("cart") ? JSON.parse(sessionStorage.getItem("cart")!) : [],
-total: calculateTotalPrice(JSON.parse(sessionStorage.getItem("cart") || "[]")),
-
-addToCart: (product) => {
-    set((state) => {
-      const existingProduct = state.cart.find((p) => p.id === product.id);
-      if (existingProduct) {
-      
-        const quantity = existingProduct.quantity || 0;
-        existingProduct.quantity = quantity + 1;
-        sessionStorage.setItem("cart", JSON.stringify(state.cart));
-        return { ...state }; 
-      } else {
-        product.quantity = 1;
-        const updatedCart = [...state.cart, product];
-        sessionStorage.setItem("cart", JSON.stringify(updatedCart));
-        return { ...state, cart: updatedCart }; // Aggiorna solo il campo del carrello
-      }
-    });
-  },
-
-  updateQuantity: (productId, quantityDelta) => {
-    set((state) => {
-      const updatedCart = state.cart.map((item) => {
-        if (item.id === productId) {
-          item.quantity += quantityDelta;
-        }
-        return item;
-      });
-      sessionStorage.setItem("cart", JSON.stringify(updatedCart)); 
-      return { cart: updatedCart, total: calculateTotalPrice(updatedCart) };
-    });
-  },
-
-  removeProduct: (productId) => {
-    set((state) => {
-      const updatedCart = state.cart.filter((item) => item.id !== productId);
-      sessionStorage.setItem("cart", JSON.stringify(updatedCart)); 
-      return { cart: updatedCart, total: calculateTotalPrice(updatedCart) };
-    });
-  },
-
-  emptyCart: () => {
-    sessionStorage.removeItem("cart"); 
-    const { resetCounts } = useCountStore.getState(); 
-    resetCounts(); 
-    set({ cart: [] }); 
-  }
+  export const useCartStore = create<CartState>((set) => ({
+    cart: sessionStorage.getItem("cart") ? JSON.parse(sessionStorage.getItem("cart")!) : [],
+    total: calculateTotalPrice(JSON.parse(sessionStorage.getItem("cart") || "[]")),
   
-}));
+    addToCart: (product) => {
+      set((state) => {
+        const existingProduct = state.cart.find((p) => p.id === product.id);
+        if (existingProduct) {
+          const quantity = existingProduct.quantity || 0;
+          existingProduct.quantity = quantity + 1;
+          sessionStorage.setItem("cart", JSON.stringify(state.cart));
+          const total = calculateTotalPrice([...state.cart, product]); // Total + new product
+          return { ...state, total }; // uppdate total
+        } else {
+          product.quantity = 1;
+          const updatedCart = [...state.cart, product];
+          sessionStorage.setItem("cart", JSON.stringify(updatedCart));
+          const total = calculateTotalPrice(updatedCart); // Total + new product
+          return { ...state, cart: updatedCart, total }; // cart + total
+        }
+      });
+    },
+  
+    updateQuantity: (productId, quantityDelta) => {
+      set((state) => {
+        const updatedCart = state.cart.map((item) => {
+          if (item.id === productId) {
+            item.quantity += quantityDelta;
+          }
+          return item;
+        });
+        sessionStorage.setItem("cart", JSON.stringify(updatedCart)); 
+        const total = calculateTotalPrice(updatedCart); 
+        return { cart: updatedCart, total };
+      });
+    },
+  
+    removeProduct: (productId) => {
+      set((state) => {
+        const updatedCart = state.cart.filter((item) => item.id !== productId);
+        sessionStorage.setItem("cart", JSON.stringify(updatedCart)); 
+        const total = calculateTotalPrice(updatedCart); 
+        return { cart: updatedCart, total };
+      });
+    },
+  
+    emptyCart: () => {
+      sessionStorage.removeItem("cart"); 
+      const { resetCounts } = useCountStore.getState(); 
+      resetCounts(); 
+      const total = calculateTotalPrice([]); // Calcola il totale dopo aver svuotato il carrello
+      set({ cart: [], total }); 
+    }
+  }));
+  
 
 export const getCountFromSessionStorage = () => {
     const countString = sessionStorage.getItem("count");
