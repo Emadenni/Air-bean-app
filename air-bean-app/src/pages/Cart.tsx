@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useCartStore } from "../store/cartStore";
-import { useCountStore } from "../store/cartStore";
+import { useCountStore, useUpdateCount } from "../store/cartStore";
 import "../pages/cart.scss";
 import arrowUp from "../assets/images/arrow-up.svg";
 import vectorUp from "../assets/images/vector-up.svg";
@@ -8,6 +8,7 @@ import vectorDown from "../assets/images/vector-down.svg";
 import remove from "../assets/images/remove.jpg";
 import { CartProps, cartProduct } from "../components/types";
 import close from "../assets/images/close.png";
+import CartOverlay from "../components/EmptyCartOverlay/EmptyCartOverlay";
 
 const Cart: React.FC<CartProps> = ({ handleToggleCart }: CartProps) => {
   const { cart, removeProduct, total, updateQuantity, emptyCart } = useCartStore();
@@ -27,11 +28,12 @@ const Cart: React.FC<CartProps> = ({ handleToggleCart }: CartProps) => {
   };
 
   useEffect(() => {}, [cart]);
+  
 
   return (
     <div className="cart-container">
       <img src={arrowUp} alt="arrow up" className="arrow-up" />
-
+      <CartOverlay />
       <div className="cart-container__list">
         <h1>Din beställning</h1>
         <ul>
@@ -61,7 +63,15 @@ const Cart: React.FC<CartProps> = ({ handleToggleCart }: CartProps) => {
           <p className="cart-container-total__dots">...............................</p>{" "}
           <p className="cart-container-total__price">{total} kr</p>
         </div>
-        <button className="clearCartButton" onClick={emptyCart}>Remove all products</button>
+        <button
+          className="clearCartButton"
+          onClick={() => {
+            emptyCart();
+            resetCounts();
+          }}
+        >
+          Remove all products
+        </button>
         <button className="toCashButton">Take my money!</button>
       </div>
       <img className="cart-container__close-button" src={close} alt="close button" onClick={handleToggleCart} />

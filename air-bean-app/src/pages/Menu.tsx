@@ -33,7 +33,7 @@ const Menu = () => {
 
   const handleAddToCart = (product: product) => {
     addToCart(product as unknown as cartProduct);
-
+    increment();
     console.log("function's working");
   };
 

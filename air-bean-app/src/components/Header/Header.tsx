@@ -4,11 +4,11 @@ import { useLocation, Link } from "react-router-dom";
 import top from "../../assets/images/top.png";
 import navicon from "../../assets/images/navicon.svg";
 import carticon from "../../assets/images/carticon.png";
-import close from "../../assets/images/close.png";
+import { useCountStore} from "../../store/cartStore"
 import "../Header/header.scss";
 import Nav from "../Nav/Nav";
 import Cart from "../../pages/Cart";
-import setPageTop from "../Nav/Nav"
+
 
 
 
@@ -17,6 +17,8 @@ const Header = () => {
   const isAboutPage = location.pathname === "/about";
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const { count } = useCountStore();
 
   const handleToggleCart = () => {
     setIsCartOpen((prevState) => !prevState);
@@ -37,7 +39,7 @@ const Header = () => {
           <div className="cart-icons-wrapper">
             <img src={carticon} alt="carticon" onClick={handleToggleCart} />
 
-            <p className="headerIcons__cart-counter">0</p>
+            <p className="headerIcons__cart-counter">{count}</p>
           </div>
         )}
       </div>
