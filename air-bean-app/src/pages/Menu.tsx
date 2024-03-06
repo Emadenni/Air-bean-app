@@ -4,11 +4,14 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer.";
 import { product } from "../components/types";
 import add from "../assets/images/add.png"
+import { useCartStore } from "../store/cartStore";
+import { useCountStore } from "../store/cartStore";
+import { cartProduct } from "../components/types";
 
 const Menu = () => {
   const [products, setProducts] = useState([]);
 
-  useEffect(() => {
+useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch("https://airbean-api-xjlcn.ondigitalocean.app/api/beans/");
@@ -22,7 +25,18 @@ const Menu = () => {
 
     fetchData();
   }, []);
-  console.log("prod in main", products);
+  /* console.log("prod in main", products); */
+
+  const { addToCart } = useCartStore();
+
+  const handleAddToCart = (product: product) => {
+    addToCart(product as cartProduct);
+    console.log("function's working");
+    
+  };
+
+
+  
   return (
     <div className="menu-container">
       <div className="inMenu">
@@ -35,7 +49,7 @@ const Menu = () => {
           {Array.isArray(products) &&
             products.map((product: product) => (
               <li key={product.id} className="menu-list__item">
-                <img src={add} alt="add icon" className="addButton"/>
+                <img src={add} alt="add icon" className="addButton"  onClick={() => handleAddToCart(product)}/>
                 <div>
                 <h2>{product.title}</h2>
                 <p className="menu-list__item-desc">{product.desc}</p>
@@ -55,3 +69,6 @@ const Menu = () => {
 };
 
 export default Menu;
+
+
+

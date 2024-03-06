@@ -47,7 +47,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-right: 8px;
+    margin-right: 15px;
 
     > p {
       font-family: "Work Sans", sans-serif;
@@ -70,6 +70,7 @@
   > h1 {
     font-size: 32px;
     text-align: center;
+    padding-top: 45px;
   }
 }
 
@@ -138,5 +139,14 @@
   font-size: 24px;
   background-color: #2f2926;
   padding: 10px;
+  margin-bottom:40px;
   border-radius: 50px;
+  
+}
+
+.remove-icon {
+  width: 18px;
+  position: absolute;
+  transform: translateX(300px);
+  
 }

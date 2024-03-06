@@ -1,25 +1,37 @@
-import React from 'react'; 
-
-
+import React from "react";
 
 export type NavItemType = {
-id: number;
-title: string;
-url: string;
-}
+  id: number;
+  title: string;
+  url: string;
+};
 
-export type NavListType= NavItemType[];
+export type NavListType = NavItemType[];
 
 export interface NavProps {
-    handleMenuToggle: () => void;
-  }
+  handleMenuToggle: () => void;
+}
 export interface CartProps {
-    handleToggleCart: () => void;
-  }
-  
-  export interface product {
-id: number,
-title:string,
-desc:string,
-price:number
-  } 
+  handleToggleCart: () => void;
+}
+
+export interface product {
+  id: string;
+  title: string;
+  desc: string;
+  price: number;
+}
+
+export interface cartProduct {
+  id: string;
+  title: string;
+  price: number;
+  quantity:number;
+}
+
+export interface CountState {
+  count: number;
+  increment: () => void;
+  decrement: () => void;
+  resetCounts: () => void; 
+}
