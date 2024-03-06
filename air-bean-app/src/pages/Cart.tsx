@@ -43,7 +43,7 @@ const Cart: React.FC<CartProps> = ({ handleToggleCart }: CartProps) => {
                 {product.title}
                 <span>{product.price} kr</span>
               </p>
-              <p className="cart-container__item-dots">..................................</p>
+              <p className="cart-container__item-dots">....................................................</p>
 
               <div className="cart-container__quantityDiv">
                 <img src={vectorUp} alt="vector" onClick={() => handleIncrement(product.id)} />
