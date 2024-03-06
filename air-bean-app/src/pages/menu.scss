@@ -17,7 +17,6 @@
   }
 }
 
-
 .menu-list-wrapper {
   display: flex;
   flex-direction: column;
@@ -82,9 +81,17 @@ h1 {
 }
 
 .addButton {
-  min-width: 32px;
-  min-height: 32px;
-  padding-left: 100px;
+  width: 64px;
+  height: 64px;
+  margin-left: 90px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.addButton:hover {
+  scale: 1.1;
+  background-color: rgb(47, 41, 38, 0.2);
 }
 
 .menu-container__item-dots {

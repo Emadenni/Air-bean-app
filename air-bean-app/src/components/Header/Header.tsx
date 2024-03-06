@@ -12,6 +12,7 @@ import Cart from "../../pages/Cart";
 
 
 
+
 const Header = () => {
   const location = useLocation();
   const isAboutPage = location.pathname === "/about";
@@ -39,7 +40,7 @@ const Header = () => {
           <div className="cart-icons-wrapper">
             <img src={carticon} alt="carticon" onClick={handleToggleCart} />
 
-            <p className="headerIcons__cart-counter">{count}</p>
+            <p className="headerIcons__cart-counter"   >{count}</p> 
           </div>
         )}
       </div>

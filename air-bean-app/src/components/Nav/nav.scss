@@ -9,7 +9,7 @@
   gap: 140px;
   padding: 16px;
   position: absolute;
- transform: translateY(-20px);
+  transform: translateY(-20px);
   z-index: 20;
 
   &__list {
@@ -38,6 +38,7 @@
   &__close-button {
     width: 48px;
     align-self: flex-start;
+    cursor: pointer;
   }
 }
 
@@ -45,4 +46,8 @@
   opacity: 0.2;
   margin-bottom: 26px;
   width: 48px;
+}
+
+.nav-container__list li:hover {
+scale: 1.2;
 }

@@ -49,7 +49,14 @@ const Menu = () => {
           {Array.isArray(products) &&
             products.map((product: product) => (
               <li key={product.id} className="menu-list__item">
-                <img src={add} alt="add icon" className="addButton" onClick={() => handleAddToCart(product)} />
+                <img
+                  src={add}
+                  alt="add icon"
+                  className="addButton"
+                  onClick={() => {
+                    handleAddToCart(product);
+                  }}
+                />
                 <div>
                   <h2>{product.title}</h2>
                   <p className="menu-list__item-desc">{product.desc}</p>

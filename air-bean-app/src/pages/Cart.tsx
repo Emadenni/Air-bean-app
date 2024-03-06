@@ -13,6 +13,7 @@ import CartOverlay from "../components/EmptyCartOverlay/EmptyCartOverlay";
 const Cart: React.FC<CartProps> = ({ handleToggleCart }: CartProps) => {
   const { cart, removeProduct, total, updateQuantity, emptyCart } = useCartStore();
   const { increment, decrement, resetCounts } = useCountStore();
+  
 
   const handleDecrement = (productId: string) => {
     const product = cart.find((item) => item.id === productId);
@@ -46,9 +47,9 @@ const Cart: React.FC<CartProps> = ({ handleToggleCart }: CartProps) => {
               <p className="cart-container__item-dots">....................................................</p>
 
               <div className="cart-container__quantityDiv">
-                <img src={vectorUp} alt="vector" onClick={() => handleIncrement(product.id)} />
+                <img className="vector" src={vectorUp} alt="vector" onClick={() => handleIncrement(product.id)} />
                 <p>{product.quantity}</p>
-                <img src={vectorDown} alt="vector" onClick={() => handleDecrement(product.id)} />
+                <img className="vector"  src={vectorDown} alt="vector" onClick={() => handleDecrement(product.id)} />
               </div>
               {<img src={remove} alt="remove" className="remove-icon" onClick={() => removeProduct(product.id)} />}
             </li>

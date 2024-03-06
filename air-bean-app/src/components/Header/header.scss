@@ -2,8 +2,7 @@
 
 .inMenu .headerIcons {
   transform: translateY(-80px);
- height: 0;
-
+  height: 0;
 }
 
 .inMenu {
@@ -13,12 +12,10 @@
   height: 110px;
 }
 
-
 .inAbout .headerIcons {
   transform: translateY(-103px);
   margin-left: 19px;
 }
-
 .headerIcons {
   width: 97%;
   z-index: 2;
@@ -26,6 +23,7 @@
   justify-content: space-between;
   align-items: center;
   margin-left: 15px;
+  cursor: pointer;
 
   &__carticon {
     position: relative;
@@ -75,4 +73,8 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 2;
+}
+
+.clicked {
+color: yellow;
 }
