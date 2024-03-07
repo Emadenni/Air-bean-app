@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useCartStore, useCountStore } from "../../store/cartStore";
 
+
 const OrderButton: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { cart } = useCartStore();
 
 
@@ -18,6 +19,7 @@ const OrderButton: React.FC = () => {
       redirectToProfilePage();
     }
   };
+
 
   const placeOrder = async () => {
     try {
@@ -38,7 +40,7 @@ const OrderButton: React.FC = () => {
   
       if (response.ok) {
         redirectToOrderStatusPage();
-        console.log("data saved");
+        console.log("data saved", response);
       } else {
         console.error("Error in POST request to place the order");
       }
@@ -46,6 +48,8 @@ const OrderButton: React.FC = () => {
       console.error("An error occurred during the POST request:", error);
     }
   };
+  
+
   
   const redirectToProfilePage = () => {
     window.location.href = "/profile";

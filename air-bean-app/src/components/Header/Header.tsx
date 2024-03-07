@@ -16,6 +16,7 @@ import Cart from "../../pages/Cart";
 const Header = () => {
   const location = useLocation();
   const isAboutPage = location.pathname === "/about";
+  const isProfilePage = location.pathname === "/profile";
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -36,7 +37,7 @@ const Header = () => {
       <div className="headerIcons">
         <img src={navicon} alt="navicon" onClick={handleToggleNav} />
 
-        {!isAboutPage && (
+        {!isAboutPage && !isProfilePage && (
           <div className="cart-icons-wrapper">
             <img src={carticon} alt="carticon" onClick={handleToggleCart} />
 

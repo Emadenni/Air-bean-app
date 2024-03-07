@@ -11,6 +11,14 @@
 .inAbout {
   height: 110px;
 }
+.inProfile {
+  height: 110px;
+}
+
+.inProfile .headerIcons {
+  transform: translateY(-103px);
+  margin-left: 19px;
+}
 
 .inAbout .headerIcons {
   transform: translateY(-103px);
