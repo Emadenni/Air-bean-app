@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useCartStore } from "../store/cartStore";
-import { useCountStore, useUpdateCount } from "../store/cartStore";
+import { useCartStore, useCountStore } from "../store/cartStore";
+
 import "../pages/cart.scss";
 import arrowUp from "../assets/images/arrow-up.svg";
 import vectorUp from "../assets/images/vector-up.svg";
@@ -9,6 +9,7 @@ import remove from "../assets/images/remove.jpg";
 import { CartProps, cartProduct } from "../components/types";
 import close from "../assets/images/close.png";
 import CartOverlay from "../components/EmptyCartOverlay/EmptyCartOverlay";
+import OrderButton from "../components/OrderButton/OrderButton";
 
 const Cart: React.FC<CartProps> = ({ handleToggleCart }: CartProps) => {
   const { cart, removeProduct, total, updateQuantity, emptyCart } = useCartStore();
@@ -73,7 +74,7 @@ const Cart: React.FC<CartProps> = ({ handleToggleCart }: CartProps) => {
         >
           Remove all products
         </button>
-        <button className="toCashButton">Take my money!</button>
+      <OrderButton />
       </div>
       <img className="cart-container__close-button" src={close} alt="close button" onClick={handleToggleCart} />
     </div>
