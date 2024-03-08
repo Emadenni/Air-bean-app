@@ -4,6 +4,8 @@ import "../pages/profile.scss";
 
 
 const Profile = () => {
+
+  
   return (
   <section className="profile-wrapper">
     <div className="inProfile">

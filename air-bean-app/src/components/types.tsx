@@ -35,3 +35,9 @@ export interface CountState {
   decrement: () => void;
   resetCounts: () => void; 
 }
+export interface OrderState {
+  eta: number,
+  orderNr:string
+  setOrderData: (eta:number, orderNr: string) => void; 
+}
+

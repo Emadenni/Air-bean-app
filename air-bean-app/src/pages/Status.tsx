@@ -1,23 +1,35 @@
 import { useEffect, useState } from "react";
+import droneImg from "../assets/images/droneImg.svg"
 
 const Status = () => {
-  const [orders, setOrders] = useState([{}]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("https://airbean-api-xjlcn.ondigitalocean.app/api/user/history");
-        const jsonData = await response.json();
-        setOrders(jsonData.menu);
-        console.log("orders", orders);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  const [eta, setEta] = useState("");
+  const [orderNr, setOrderNr] = useState("");
 
-    fetchData();
+  useEffect(() => {
+ 
+    const storedEta = sessionStorage.getItem("eta");
+    const storedOrderNr = sessionStorage.getItem("orderNr");
+    
+    if (storedEta && storedOrderNr) {
+      setEta(storedEta);
+      setOrderNr(storedOrderNr);
+    }
+    
   }, []);
 
-  return <div>Status</div>;
+  
+  
+
+  return (
+    <div>
+       <p>Order Number: {orderNr}</p>
+       <img src={droneImg} alt="drone" />
+  
+      <p>Din beställning är på väg!</p>
+      <p>ETA: {eta} <span>minuter</span> </p> 
+     <button>Ok, cool</button>
+    </div>
+  );
 };
 
 export default Status;

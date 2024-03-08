@@ -9,12 +9,14 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import "./main.scss"
 
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
   },
   {
+   
     path: "/menu",
     element: <Menu />,
   },

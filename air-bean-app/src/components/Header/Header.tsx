@@ -24,6 +24,7 @@ const Header = () => {
 
   const handleToggleCart = () => {
     setIsCartOpen((prevState) => !prevState);
+    
   };
 
   const handleToggleNav = () => {
