@@ -39,8 +39,10 @@ const OrderButton: React.FC = () => {
       });
   
       if (response.ok) {
-        redirectToOrderStatusPage();
-        console.log("data saved", response);
+        const data = await response.json();
+        const { eta, orderNr } = data;
+        console.log("ETA:", eta);
+        console.log("Order Number:", orderNr);
       } else {
         console.error("Error in POST request to place the order");
       }
