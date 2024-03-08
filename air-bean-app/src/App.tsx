@@ -30,6 +30,16 @@ function App() {
       </p>
     </>
   )
-}
+}  
+return (
+<section className="profile-wrapper">
+  <div className="inProfile">
+      <Header />
+    </div>
+  <article className="profile-container" ></article>
+</section>
+)
+};
+
 
 export default App

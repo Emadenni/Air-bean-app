@@ -1,24 +1,30 @@
 import React, { useState } from "react";
 import { useCartStore, useCountStore } from "../../store/cartStore";
 
+interface OrderButtonProps {
+  emptyCart: () => void;
+  resetCounts:()=>void;
+}
 
-const OrderButton: React.FC = () => {
+
+const OrderButton: React.FC<OrderButtonProps> = ({ emptyCart }: OrderButtonProps) => {
+  
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const { cart } = useCartStore();
- 
 
-  const handleOrderClick = () => {
-    console.log("CLICKED SUCCESFULLY");
-
+  const handleOrderClick = async () => {
+    console.log("CLICKED SUCCESSFULLY");
+  
     if (isLoggedIn) {
-      placeOrder();
+      await placeOrder();
+      emptyCart();
+    
     } else {
       window.alert("You are not logged in");
-
       redirectToProfilePage();
     }
   };
-
+  
   const placeOrder = async () => {
     try {
       const response = await fetch("https://airbean-api-xjlcn.ondigitalocean.app/api/beans/order", {
@@ -41,11 +47,14 @@ const OrderButton: React.FC = () => {
         const { eta, orderNr } = data;
         console.log("ETA:", eta);
         console.log("Order Number:", orderNr);
+        localStorage.setItem("orderNr", orderNr.toString());
+        sessionStorage.removeItem("eta");
+        sessionStorage.removeItem("orderNr");
         sessionStorage.setItem("eta", eta.toString());
         sessionStorage.setItem("orderNr", orderNr.toString());
-        
-        
+      
         redirectToOrderStatusPage();
+        
       } else {
         console.error("Error in POST request to place the order");
       }

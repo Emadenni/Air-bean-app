@@ -74,7 +74,8 @@ const Cart: React.FC<CartProps> = ({ handleToggleCart }: CartProps) => {
         >
           Remove all products
         </button>
-      <OrderButton />
+        <OrderButton emptyCart={emptyCart} resetCounts={resetCounts} />
+
       </div>
       <img className="cart-container__close-button" src={close} alt="close button" onClick={handleToggleCart} />
     </div>

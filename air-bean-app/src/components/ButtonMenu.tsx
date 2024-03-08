@@ -1,4 +1,4 @@
-// ParentComponent.tsx
+/* // ParentComponent.tsx
 import React, { useState } from 'react';
 import Nav from './Nav/Nav';
 
@@ -18,3 +18,4 @@ const ParentComponent: React.FC = () => {
 };
 
 export default ParentComponent;
+ */
