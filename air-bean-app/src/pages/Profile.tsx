@@ -1,7 +1,8 @@
 import Header from "../components/Header/Header";
 import Login from "../components/Login/Login";
+import Signup from "../components/Signup";
 import React, { useEffect, useState } from "react";
-import { useCartStore } from "../store/cartStore";
+
 import "../pages/profile.scss"
 const Profile = () => {
   const [orderHistory, setOrderHistory] = useState([]);
@@ -31,10 +32,9 @@ const Profile = () => {
         <Header />
       </div>
    <Login />
-
-{/* {orderNr},
-{total} */}
+   <Signup />
    
+
   </section>
   )
 };

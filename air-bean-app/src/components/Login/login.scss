@@ -1,7 +1,32 @@
-.profile-container {
+.login-container {
   height: 39.688rem;
   width: 21.313rem;
   background-color: white;
-    margin: auto ;
-   transform: translateY(-30px);
-} 
+  margin: auto;
+  transform: translateY(-30px);
+  
+  >img {
+    width: 30px;
+  }
+    &__wrapper {
+      height: 31.438rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+}
+  
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}
