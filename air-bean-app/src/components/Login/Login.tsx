@@ -2,10 +2,16 @@ import "../Login/login.scss";
 import logoSmall from "../../assets/images/logoSmall.svg";
 import { useNavigate } from "react-router-dom";
 import Signup from "../Signup/Signup";
+import { useState } from "react";
 
 
 const Login = () => {
   const navigate=useNavigate();
+  const [showSignUp, setShowSignUp] = useState(false);
+
+  const handleSignUpToggle = () => {
+    setShowSignUp(!showSignUp);
+  }
 
   const handleClickGuest = () => {
   window.confirm("Vill du bekräfta beställningen i din varukorg?")
@@ -42,14 +48,14 @@ const Login = () => {
             Logga in
           </button>
           <div className="alternatives-links">
-            <p>Icke registrerad ännu? <br /> Skapa ett konto <a className="green">här!</a></p>
+            <p>Icke registrerad ännu? <br /> Skapa ett konto <a className="green" onClick={handleSignUpToggle}>här!</a></p>
             <p>eller</p>
             <a className="green" onClick={handleClickGuest}>Fortsätt som gäst.</a>
           </div>
        
       </section>
     </article>
-    <Signup />
+    {showSignUp && <Signup />}
     </>
   );
 };

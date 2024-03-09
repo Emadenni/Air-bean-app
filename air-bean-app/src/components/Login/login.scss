@@ -5,8 +5,8 @@
   margin: auto;
   transform: translateY(-30px);
   color: #2f2926;
-  z-index: 200;
-  display: none;
+  position: relative;
+
 
   &__wrapper {
     height: 30.438rem;
@@ -73,8 +73,8 @@
       font-size: 12px;
       font-style: normal;
       font-weight: 400;
-      margin-top: 20px;
-      margin-bottom: 10px;
+      margin-top: 15px;
+      margin-bottom: 8px;
     }
   }
 
@@ -101,7 +101,7 @@
     background-color: #2f2926;
     padding: 10px;
     border-radius: 50px;
-    margin-top: 20px;
+    margin-top: 16px;
     margin-bottom: 15px;
   }
 }
