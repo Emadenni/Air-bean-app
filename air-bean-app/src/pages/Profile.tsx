@@ -1,6 +1,6 @@
 import Header from "../components/Header/Header";
 import Login from "../components/Login/Login";
-import Signup from "../components/Signup";
+import Signup from "../components/Signup/Signup";
 import React, { useEffect, useState } from "react";
 
 import "../pages/profile.scss"
@@ -32,7 +32,7 @@ const Profile = () => {
         <Header />
       </div>
    <Login />
-   <Signup />
+   
    
 
   </section>

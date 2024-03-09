@@ -5,7 +5,7 @@ import Menu from "./pages/Menu";
 import About from "./pages/About";
 import Cart from "./pages/Cart";
 import Status from "./pages/Status";
-import Login from "./components/Login/Login";
+
 import Profile from "./pages/Profile";
 
 import "./main.scss";
@@ -37,7 +37,7 @@ const router = createBrowserRouter([
     path: "/status",
     element: <Status />,
   },
- 
+
   {
     path: "/profile",
     element: <Profile />,

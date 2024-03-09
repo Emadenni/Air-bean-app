@@ -1,26 +1,26 @@
-import "../Login/login.scss";
+import "../../components/Signup/signup.scss"
 import logoSmall from "../../assets/images/logoSmall.svg";
-import { useNavigate } from "react-router-dom";
-import Signup from "../Signup/Signup";
 
-
-const Login = () => {
-  const navigate=useNavigate();
-
-  const handleClickGuest = () => {
-  window.confirm("Vill du bekräfta beställningen i din varukorg?")
-   navigate("/status")
-  }
-  
-  
+const Signup = () => {
   return (
-    <>
-    <article className="login-container">
-      <section className="login-container__wrapper">
-        <img src={logoSmall} alt="logoSmall" />
-        <h1>Du är inte inloggad</h1>
-        <h2>Du kan logga in genom att fylla i fälten nedan.</h2>
+    <article className="signup-container">
+      <section className="signup-container__wrapper">
+      <img src={logoSmall} alt="logoSmall" />
+      <h1>Välkommen till AirBean-familjen!</h1>
+        <h2>Genom att skapa ett konto nedan kan du spara och se din orderhistorik.</h2>
         <form className="form">
+          <div className="form__group">
+            <label htmlFor="username" className="form-label">
+              Namn
+            </label>
+            <input type="text" id="username" name="username" className="form-input" required />
+          </div>
+          <div className="form__group">
+            <label htmlFor="username" className="form-label">
+              Epost
+            </label>
+            <input type="text" id="username" name="username" className="form-input" required />
+          </div>
           <div className="form__group">
             <label htmlFor="username" className="form-label">
               Username
@@ -39,19 +39,12 @@ const Login = () => {
           </div>
           </form>
           <button type="submit" className="form__button">
-            Logga in
+            Skapa konto
           </button>
-          <div className="alternatives-links">
-            <p>Icke registrerad ännu? <br /> Skapa ett konto <a className="green">här!</a></p>
-            <p>eller</p>
-            <a className="green" onClick={handleClickGuest}>Fortsätt som gäst.</a>
-          </div>
-       
-      </section>
+          </section>
     </article>
-    <Signup />
-    </>
+    
   );
 };
 
-export default Login;
+export default Signup;
