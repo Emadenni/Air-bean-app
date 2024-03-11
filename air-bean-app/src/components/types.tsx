@@ -41,3 +41,12 @@ export interface OrderState {
   setOrderData: (eta:number, orderNr: string) => void; 
 }
 
+export interface User {
+  name: string;
+  email: string;
+  username: string;
+}
+
+export type UserData = User[];
+
+

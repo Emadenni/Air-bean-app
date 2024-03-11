@@ -1,5 +1,5 @@
 .login-container {
-  height: 39.688rem;
+  height: 42.688rem;
   width: 21.313rem;
   background-color: white;
   margin: auto;
@@ -17,7 +17,7 @@
 
     > img {
       width: 30px;
-      margin-top: 120px;
+      margin-top: 180px;
     }
 
     > h1 {
@@ -101,7 +101,7 @@
     background-color: #2f2926;
     padding: 10px;
     border-radius: 50px;
-    margin-top: 16px;
+    margin-top: 8px;
     margin-bottom: 15px;
   }
 }
@@ -119,17 +119,18 @@ a {
   display: flex;
   flex-direction:column;
   align-items: center;
-  gap: 5px;
+  gap: 12px;
+  margin-top: 30px;
 
   :nth-child(1), :nth-child(3) {
     font-family: "Work Sans", sans-serif;
     font-optical-sizing: auto;
-    font-size: 14px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 400;
     border: solid 1px #2f2926 ;
     padding: 6px;
-    width: 80%;
+    width: 120%;
     text-align: center;
     border-radius: 5px;
     
@@ -139,5 +140,5 @@ a {
 .green {
   color: #0e927d;
   text-decoration: underline;
-  font-size: 18px;
+  font-size: 22px;
 }

@@ -1,15 +1,15 @@
 .signup-container {
     position: absolute;
     top: 110px;
-    left: 20px;
+    left: 16px;
     z-index: 3000;
     background-color: wheat;
-    height: 39.688rem;
-    width: 21.313rem;
+    min-height: 43.688rem;
+   width: 21.613rem;
     background-color: white;
-    margin: auto;
     transform: translateY(-30px);
     color: #2f2926;
+    
     
   &__wrapper {
     height: 30.438rem;
@@ -20,7 +20,7 @@
 
     > img {
       width: 30px;
-      margin-top: 160px;
+      margin-top: 210px;
     }
 
     > h1 {
@@ -37,7 +37,7 @@
     > h2 {
       font-family: "Work Sans", sans-serif;
       font-optical-sizing: auto;
-      font-size: 16px;
+      font-size: 14px;
       font-style: normal;
       font-weight: 400;
       text-align: center;
@@ -46,4 +46,20 @@
       
     }
   }
+}
+
+.form__group input {
+  font-family: "Work Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  padding: 10px;
+  color: #2f2926;
+}
+
+.error {
+  font-size: 13px;
+  background-color: rgb(255, 0, 0,0.3);
 }
