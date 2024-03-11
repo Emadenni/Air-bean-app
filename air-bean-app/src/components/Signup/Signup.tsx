@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "../../components/Signup/signup.scss";
+import useUserDataStore from "../../store/useUserDataStore";
 import logoSmall from "../../assets/images/logoSmall.svg";
+import { create } from "zustand";
 
 interface FormData {
   name: string;
@@ -68,14 +70,29 @@ const Signup: React.FC = () => {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
+      // Creare un nuovo utente con i dati del form
+      const newUser = {
+        name: formData.name,
+        email: formData.email,
+        username: formData.username,
+      };
+
+      
+      addUser(newUser);
+      localStorage.setItem('userData', JSON.stringify(newUser));
+
       console.log('Form submitted:', formData);
     }
   };
+  
 
   const isValidEmail = (email: string): boolean => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
+
+ 
+  const { addUser } = useUserDataStore();
 
   return (
     <article className="signup-container">

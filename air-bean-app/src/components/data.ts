@@ -7,6 +7,6 @@ export const navList = [
 ]
 
 
-export const UserData = []
+
 
 
