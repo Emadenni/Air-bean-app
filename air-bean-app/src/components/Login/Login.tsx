@@ -177,7 +177,7 @@ const placeOrderByGuest = async () => {
               {errors.password && <span className="error">{errors.password}</span>}
             </div>
             <div className="form__radio">
-              <input className="radioInput" type="radio" name="gender" value="male" />
+              <input className="radioInput" type="radio" name="gender" value="male" required />
               <label htmlFor="radio">GDPR Ok!</label>
             </div>
             <button type="submit" className="form__button">

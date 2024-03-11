@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../components/Signup/signup.scss";
 import useUserDataStore from "../../store/useUserDataStore";
 import logoSmall from "../../assets/images/logoSmall.svg";
@@ -14,6 +15,7 @@ interface FormData {
 }
 
 const Signup: React.FC = () => {
+  const navigate = useNavigate();
   const { addUser, userData } = useUserDataStore();
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -88,6 +90,8 @@ const Signup: React.FC = () => {
      
       
       signupFetch();
+      window.location.reload();
+
     }
   };
   
