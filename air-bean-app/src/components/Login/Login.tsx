@@ -3,6 +3,8 @@ import logoSmall from "../../assets/images/logoSmall.svg";
 import { useNavigate } from "react-router-dom";
 import Signup from "../Signup/Signup";
 import { useState } from "react";
+import { useCartStore } from "../../store/cartStore";
+import placeOrder from "../OrderButton/OrderButton";
 
 interface LoginData {
   username: string;
@@ -33,36 +35,109 @@ const Login: React.FC = () => {
     setShowSignUp(!showSignUp);
   };
 
+  
+const { cart } = useCartStore();
+
+const placeOrderByGuest = async () => {
+  try {
+    const response = await fetch("https://airbean-api-xjlcn.ondigitalocean.app/api/beans/order", {
+      method: "POST",
+      body: JSON.stringify({
+        details: {
+          order: cart.map((product) => ({
+            name: product.title,
+            price: product.price,
+          })),
+        },
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      const { eta, orderNr } = data;
+      console.log("ETA:", eta);
+      console.log("Order Number:", orderNr);
+      localStorage.setItem("orderNr", orderNr.toString());
+      sessionStorage.removeItem("eta");
+      sessionStorage.removeItem("orderNr");
+      sessionStorage.setItem("eta", eta.toString());
+      sessionStorage.setItem("orderNr", orderNr.toString());
+    } else {
+      console.error("Error in POST request to place the order");
+    }
+  } catch (error) {
+    console.error("An error occurred during the POST request:", error);
+  }
+};
+
+
+  const { emptyCart } = useCartStore();
   const handleClickGuest = () => {
-    window.confirm("Vill du bekräfta beställningen i din varukorg?");
-    navigate("/status");
+    const confirm = window.confirm("Vill du bekräfta beställningen i din varukorg?");
+
+    if (confirm) {
+      placeOrderByGuest();
+      emptyCart();
+      navigate("/status");
+    } else {
+      navigate("/menu");
+    }
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-   
     const newErrors: Partial<LoginData> = {};
 
     if (loginData.username.trim() === "") {
       newErrors.username = "Username krävs";
-    } else if (loginData.username !== 'api-answser') {
-      newErrors.username ="användarnamn passar inte";
-    } 
+    } /* else if (loginData.username !== "api-answser") {
+      newErrors.username = "användarnamn passar inte";
+    } */
     if (loginData.password.trim() === "") {
       newErrors.password = "Password krävs";
-    } else if (loginData.password !== 'api-amswer') {
+    } e/* lse if (loginData.password !== "api-amswer") {
       newErrors.password = "lösenord passar inte";
-    }
+    } */
 
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      // Invio dei dati del form (loginData)
-      console.log("Form submitted:", loginData);
+      fetchLogin();
+     console.log(fetchLogin);
+     
     }
   };
 
+  const fetchLogin = async () => {
+    try {
+      const response = await fetch("https://airbean-api-xjlcn.ondigitalocean.app/api/user/login", {
+        method: "POST",
+        body: JSON.stringify({
+          "username": loginData.username,
+          "password": loginData.password,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log("login data", data);
+        sessionStorage.setItem("token", data.token.toString());
+        
+      } else {
+        console.error("Error in POST request");
+      }
+    } catch (error) {
+      console.error("An error occurred during the POST request:", error);
+    }
+  };
+
+ 
   return (
     <>
       <article className="login-container">
@@ -70,19 +145,35 @@ const Login: React.FC = () => {
           <img src={logoSmall} alt="logoSmall" />
           <h1>Du är inte inloggad</h1>
           <h2>Du kan logga in genom att fylla i fälten nedan.</h2>
-          <form className="form"  onSubmit={handleSubmit}>
+          <form className="form" onSubmit={handleSubmit}>
             <div className="form__group">
               <label htmlFor="username" className="form-label">
                 Username
               </label>
-              <input type="text" id="username" name="username" value={loginData.username} onChange= {handleChange} className="form-input" required />
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value={loginData.username}
+                onChange={handleChange}
+                className="form-input"
+                required
+              />
               {errors.username && <span className="error">{errors.username}</span>}
             </div>
             <div className="form__group">
               <label htmlFor="password" className="form-label">
                 Password
               </label>
-              <input type="password" id="password" name="password"  value={loginData.password} onChange= {handleChange} className="form-input" required />
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={loginData.password}
+                onChange={handleChange}
+                className="form-input"
+                required
+              />
               {errors.password && <span className="error">{errors.password}</span>}
             </div>
             <div className="form__radio">
