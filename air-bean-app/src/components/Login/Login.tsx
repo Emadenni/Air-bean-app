@@ -2,9 +2,9 @@ import "../Login/login.scss";
 import logoSmall from "../../assets/images/logoSmall.svg";
 import { useNavigate } from "react-router-dom";
 import Signup from "../Signup/Signup";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCartStore } from "../../store/cartStore";
-
+import useLoggedStore from "../../store/isLoggedStore";
 
 interface LoginData {
   username: string;
@@ -12,11 +12,19 @@ interface LoginData {
 }
 
 const Login: React.FC = () => {
+  const isLoggedIn = useLoggedStore((state) => state.isLoggedIn);
+  const checkLoginStatus = useLoggedStore((state) => state.checkLoginStatus);
   const [successMessage, setSuccessMessage] = useState("");
   const [loginData, setLoginData] = useState<LoginData>({
     username: "",
     password: "",
   });
+
+  useEffect(() => {
+    checkLoginStatus();
+  }, []);
+
+
 
   const [errors, setErrors] = useState<Partial<LoginData>>({});
 
@@ -106,11 +114,11 @@ const Login: React.FC = () => {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-        setSuccessMessage("Login successful!");
-        setTimeout(() => {
-          setSuccessMessage("");
-          fetchLogin();
-        }, 3000);
+      setSuccessMessage("Login successful!");
+      setTimeout(() => {
+        setSuccessMessage("");
+        fetchLogin();
+      }, 3000);
 
       console.log(fetchLogin);
     }
@@ -133,10 +141,14 @@ const Login: React.FC = () => {
         const data = await response.json();
         console.log("login data", data);
         sessionStorage.setItem("token", data.token.toString());
+        sessionStorage.setItem("username", loginData.username.toString());
+         
+        
+
         navigate("/menu");
         window.alert("Du kan nu bekräfta dina köp från varukorgen");
         navigate("/menu");
-        } else if (response.ok && cart.length == 0) {
+      } else if (response.ok && cart.length == 0) {
         const data = await response.json();
         console.log("login data", data);
         sessionStorage.setItem("token", data.token.toString());
@@ -148,7 +160,9 @@ const Login: React.FC = () => {
       console.error("An error occurred during the POST request:", error);
     }
   };
-
+  if (isLoggedIn === false) {
+    sessionStorage.removeItem("username");
+  }
   return (
     <>
       <article className="login-container">
@@ -217,4 +231,3 @@ const Login: React.FC = () => {
 };
 
 export default Login;
-

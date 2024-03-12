@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "../pages/menu.scss";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer.";
+import Greetings from "../components/Greetings";
 import { product } from "../components/types";
 import add from "../assets/images/add.png";
 import { useCartStore } from "../store/cartStore";
@@ -27,7 +28,7 @@ const Menu = () => {
 
     fetchData();
   }, []);
-  /* console.log("prod in main", products); */
+  
 
   const { addToCart } = useCartStore();
 
@@ -44,6 +45,7 @@ const Menu = () => {
       </div>
 
       <main className="menu-list-wrapper">
+        <Greetings />
         <h1>Meny</h1>
         <ul className="menu-list">
           {Array.isArray(products) &&

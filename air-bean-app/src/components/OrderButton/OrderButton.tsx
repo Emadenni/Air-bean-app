@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useCartStore } from "../../store/cartStore";
+import useLoggedStore from "../../store/isLoggedStore";
 
 interface OrderButtonProps {
   emptyCart: () => void;
@@ -7,13 +8,15 @@ interface OrderButtonProps {
 
 const OrderButton: React.FC<OrderButtonProps> = ({ emptyCart }: OrderButtonProps) => {
   const { cart } = useCartStore();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  /* const [isLoggedIn, setIsLoggedIn] = useState(false); */
+  const isLoggedIn = useLoggedStore(state => state.isLoggedIn);
+  const checkLoginStatus = useLoggedStore(state => state.checkLoginStatus);
 
   useEffect(() => {
-    checkLoginStatus(); // Esegui la verifica dello stato del login quando il componente viene montato
-  }, []); // Array vuoto per eseguire l'effetto solo una volta all'avvio del componente
+    checkLoginStatus(); 
+  }, []); 
 
-  const checkLoginStatus = async () => {
+ /*  const checkLoginStatus = async () => {
     try {
       const token = sessionStorage.getItem("token");
       if (!token) {
@@ -44,7 +47,7 @@ const OrderButton: React.FC<OrderButtonProps> = ({ emptyCart }: OrderButtonProps
       setIsLoggedIn(false);
       console.error("An error occurred during the GET request to check login status:", error);
     }
-  };
+  }; */
 
   const handleOrderClick = async () => {
     if (isLoggedIn) {

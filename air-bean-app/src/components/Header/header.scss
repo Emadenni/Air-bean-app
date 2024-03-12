@@ -14,6 +14,15 @@
 .inProfile {
   height: 110px;
 }
+.inHistory {
+  height: 110px;
+}
+.inHistory .headerIcons {
+  transform: translateY(-103px);
+  margin-left: 17px;
+}
+
+
 
 .inProfile .headerIcons {
   transform: translateY(-103px);

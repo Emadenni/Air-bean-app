@@ -5,10 +5,12 @@ import Menu from "./pages/Menu";
 import About from "./pages/About";
 import Cart from "./pages/Cart";
 import Status from "./pages/Status";
+import History from "./pages/History";
 
 import Profile from "./pages/Profile";
 
 import "./main.scss";
+
 
 const router = createBrowserRouter([
   {
@@ -41,7 +43,11 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />,
-  },
+   },
+  {
+    path: "/profile/history",
+    element: <History/>,
+   },
 ]);
 
 createRoot(document.getElementById("root")!).render(<RouterProvider router={router} />);
