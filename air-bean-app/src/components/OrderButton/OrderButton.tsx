@@ -13,7 +13,7 @@ const OrderButton: React.FC<OrderButtonProps> = ({ emptyCart }: OrderButtonProps
     checkLoginStatus(); // Esegui la verifica dello stato del login quando il componente viene montato
   }, []); // Array vuoto per eseguire l'effetto solo una volta all'avvio del componente
 
-  const checkLoginStatus = async () => { 
+  const checkLoginStatus = async () => {
     try {
       const token = sessionStorage.getItem("token");
       if (!token) {
@@ -23,14 +23,14 @@ const OrderButton: React.FC<OrderButtonProps> = ({ emptyCart }: OrderButtonProps
       const response = await fetch("https://airbean-api-xjlcn.ondigitalocean.app/api/user/status", {
         method: "GET",
         headers: {
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
 
       if (response.ok) {
         const data = await response.json();
         console.log("status", data);
-        
+
         if (data.success) {
           setIsLoggedIn(true);
         } else {
@@ -49,7 +49,6 @@ const OrderButton: React.FC<OrderButtonProps> = ({ emptyCart }: OrderButtonProps
   const handleOrderClick = async () => {
     if (isLoggedIn) {
       await placeOrder();
-      emptyCart();
     } else {
       window.alert("You are not logged in");
       redirectToProfilePage();
@@ -70,6 +69,7 @@ const OrderButton: React.FC<OrderButtonProps> = ({ emptyCart }: OrderButtonProps
         }),
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${sessionStorage.token}`,
         },
       });
 
@@ -83,8 +83,9 @@ const OrderButton: React.FC<OrderButtonProps> = ({ emptyCart }: OrderButtonProps
         sessionStorage.removeItem("orderNr");
         sessionStorage.setItem("eta", eta.toString());
         sessionStorage.setItem("orderNr", orderNr.toString());
-
+        emptyCart();
         redirectToOrderStatusPage();
+        
       } else {
         console.error("Error in POST request to place the order");
       }

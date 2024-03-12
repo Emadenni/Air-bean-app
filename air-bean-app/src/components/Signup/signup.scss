@@ -63,3 +63,18 @@
   font-size: 13px;
   background-color: rgb(255, 0, 0,0.3);
 }
+
+.failed {
+  align-self: center;
+  background-color: rgba(155, 51, 6, 0.6);
+  width: 60%;
+  text-align: center;
+  padding: 4px;
+  border-radius: 1px;
+  font-family: "Work Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 16px;
+  font-style: bold;
+  font-weight: 400;
+  border: solid 1px #2f2926 ;
+}

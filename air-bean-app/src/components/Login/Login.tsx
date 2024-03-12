@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Signup from "../Signup/Signup";
 import { useState } from "react";
 import { useCartStore } from "../../store/cartStore";
-import placeOrder from "../OrderButton/OrderButton";
+
 
 interface LoginData {
   username: string;
@@ -12,6 +12,7 @@ interface LoginData {
 }
 
 const Login: React.FC = () => {
+  const [successMessage, setSuccessMessage] = useState("");
   const [loginData, setLoginData] = useState<LoginData>({
     username: "",
     password: "",
@@ -35,47 +36,45 @@ const Login: React.FC = () => {
     setShowSignUp(!showSignUp);
   };
 
-  
-const { cart } = useCartStore();
+  const { cart } = useCartStore();
 
-const placeOrderByGuest = async () => {
-  try {
-    const response = await fetch("https://airbean-api-xjlcn.ondigitalocean.app/api/beans/order", {
-      method: "POST",
-      body: JSON.stringify({
-        details: {
-          order: cart.map((product) => ({
-            name: product.title,
-            price: product.price,
-          })),
+  const placeOrderByGuest = async () => {
+    try {
+      const response = await fetch("https://airbean-api-xjlcn.ondigitalocean.app/api/beans/order", {
+        method: "POST",
+        body: JSON.stringify({
+          details: {
+            order: cart.map((product) => ({
+              name: product.title,
+              price: product.price,
+            })),
+          },
+        }),
+        headers: {
+          "Content-Type": "application/json",
         },
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+      });
 
-    if (response.ok) {
-      const data = await response.json();
-      const { eta, orderNr } = data;
-      console.log("ETA:", eta);
-      console.log("Order Number:", orderNr);
-      localStorage.setItem("orderNr", orderNr.toString());
-      sessionStorage.removeItem("eta");
-      sessionStorage.removeItem("orderNr");
-      sessionStorage.setItem("eta", eta.toString());
-      sessionStorage.setItem("orderNr", orderNr.toString());
-    } else {
-      console.error("Error in POST request to place the order");
+      if (response.ok) {
+        const data = await response.json();
+        const { eta, orderNr } = data;
+        console.log("ETA:", eta);
+        console.log("Order Number:", orderNr);
+        localStorage.setItem("orderNr", orderNr.toString());
+        sessionStorage.removeItem("eta");
+        sessionStorage.removeItem("orderNr");
+        sessionStorage.setItem("eta", eta.toString());
+        sessionStorage.setItem("orderNr", orderNr.toString());
+      } else {
+        console.error("Error in POST request to place the order");
+      }
+    } catch (error) {
+      console.error("An error occurred during the POST request:", error);
     }
-  } catch (error) {
-    console.error("An error occurred during the POST request:", error);
-  }
-};
-
+  };
 
   const { emptyCart } = useCartStore();
-  const handleClickGuest = () => {
+  const handleClickFromProfile = () => {
     const confirm = window.confirm("Vill du bekräfta beställningen i din varukorg?");
 
     if (confirm) {
@@ -99,16 +98,21 @@ const placeOrderByGuest = async () => {
     } */
     if (loginData.password.trim() === "") {
       newErrors.password = "Password krävs";
-    } e/* lse if (loginData.password !== "api-amswer") {
+    }
+    e; /* lse if (loginData.password !== "api-amswer") {
       newErrors.password = "lösenord passar inte";
     } */
 
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      fetchLogin();
-     console.log(fetchLogin);
-     
+        setSuccessMessage("Login successful!");
+        setTimeout(() => {
+          setSuccessMessage("");
+          fetchLogin();
+        }, 3000);
+
+      console.log(fetchLogin);
     }
   };
 
@@ -117,18 +121,26 @@ const placeOrderByGuest = async () => {
       const response = await fetch("https://airbean-api-xjlcn.ondigitalocean.app/api/user/login", {
         method: "POST",
         body: JSON.stringify({
-          "username": loginData.username,
-          "password": loginData.password,
+          username: loginData.username,
+          password: loginData.password,
         }),
         headers: {
           "Content-Type": "application/json",
         },
       });
-      if (response.ok) {
+
+      if (response.ok && cart.length > 0) {
         const data = await response.json();
         console.log("login data", data);
         sessionStorage.setItem("token", data.token.toString());
-        
+        navigate("/menu");
+        window.alert("Du kan nu bekräfta dina köp från varukorgen");
+        navigate("/menu");
+        } else if (response.ok && cart.length == 0) {
+        const data = await response.json();
+        console.log("login data", data);
+        sessionStorage.setItem("token", data.token.toString());
+        navigate("/menu");
       } else {
         console.error("Error in POST request");
       }
@@ -137,7 +149,6 @@ const placeOrderByGuest = async () => {
     }
   };
 
- 
   return (
     <>
       <article className="login-container">
@@ -183,6 +194,7 @@ const placeOrderByGuest = async () => {
             <button type="submit" className="form__button">
               Logga in
             </button>
+            {successMessage && <span className="success">{successMessage}</span>}
           </form>
 
           <div className="alternatives-links">
@@ -193,7 +205,7 @@ const placeOrderByGuest = async () => {
               </a>
             </p>
             <p>eller</p>
-            <a className="green" onClick={handleClickGuest}>
+            <a className="green" onClick={handleClickFromProfile}>
               Fortsätt som gäst.
             </a>
           </div>
@@ -205,3 +217,4 @@ const placeOrderByGuest = async () => {
 };
 
 export default Login;
+

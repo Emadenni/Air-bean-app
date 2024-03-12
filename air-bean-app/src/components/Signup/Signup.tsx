@@ -15,6 +15,8 @@ interface FormData {
 }
 
 const Signup: React.FC = () => {
+  const [successMessage, setSuccessMessage] = useState("");
+  const [failedMessage, setFailedMessage] = useState("");
   const navigate = useNavigate();
   const { addUser, userData } = useUserDataStore();
   const [formData, setFormData] = useState<FormData>({
@@ -74,34 +76,31 @@ const Signup: React.FC = () => {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-     
       const newUser = {
         name: formData.name,
         email: formData.email,
         username: formData.username,
       };
+      const isUsernameTaken = userData.some((user) => user.username === newUser.username);
+      if (!isUsernameTaken) {
+        addUser(newUser);
 
-      addUser(newUser); 
-      
-      localStorage.setItem("userData", JSON.stringify(newUser));
+        localStorage.setItem("userData", JSON.stringify([...userData, newUser]));
+      }
+
       console.log("users", userData);
-      
       console.log("Form submitted:", formData);
-     
-      
       signupFetch();
-      window.location.reload();
-
     }
   };
-  
+
   const signupFetch = async () => {
     try {
       const response = await fetch("https://airbean-api-xjlcn.ondigitalocean.app/api/user/signup", {
         method: "POST",
         body: JSON.stringify({
-          "username": formData.username,
-          "password": formData.password,
+          username: formData.username,
+          password: formData.password,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -109,7 +108,22 @@ const Signup: React.FC = () => {
       });
       if (response.ok) {
         const kontoData = await response.json();
-        console.log("kontot skapades",kontoData );
+        if (kontoData.success === false) {
+        setFailedMessage("Användaren är redan registrerad");
+        setTimeout(() => {
+          setFailedMessage("");
+          }, 2000);
+
+        } else {
+          setSuccessMessage("Konto skapat");
+          setTimeout(() => {
+            setSuccessMessage("");
+            window.location.reload();
+          }, 1000);
+         
+        }
+
+        console.log("kontot skapades", kontoData);
       } else {
         console.error("Error in POST request");
       }
@@ -118,15 +132,10 @@ const Signup: React.FC = () => {
     }
   };
 
-
   const isValidEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
-
-  
-  
-
 
   return (
     <article className="signup-container">
@@ -210,6 +219,8 @@ const Signup: React.FC = () => {
           <button type="submit" className="form__button">
             Skapa konto
           </button>
+          {failedMessage && <span className="failed">{failedMessage}</span>}
+          {successMessage && <span className="success">{successMessage}</span>}
         </form>
       </section>
     </article>
