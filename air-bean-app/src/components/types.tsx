@@ -50,3 +50,8 @@ export interface User {
 export type UserData = User[];
 
 
+export interface Order {
+  total: number;
+  orderNr: string;
+  orderDate: string;
+}
