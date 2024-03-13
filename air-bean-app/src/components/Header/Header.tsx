@@ -25,6 +25,12 @@ const Header = () => {
 
   const handleToggleCart = () => {
     setIsCartOpen((prevState) => !prevState);
+    if(!isCartOpen) {
+      window.history.replaceState(null, "", "/cart");
+    }else {
+      window.history.replaceState(null, "", "/");
+    }
+
     
   };
 
