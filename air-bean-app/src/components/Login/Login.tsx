@@ -15,6 +15,7 @@ const Login: React.FC = () => {
   const isLoggedIn = useLoggedStore((state) => state.isLoggedIn);
   const checkLoginStatus = useLoggedStore((state) => state.checkLoginStatus);
   const [successMessage, setSuccessMessage] = useState("");
+  const [failedMessage, setFailedMessage] = useState("");
   const [loginData, setLoginData] = useState<LoginData>({
     username: "",
     password: "",
@@ -99,26 +100,25 @@ const Login: React.FC = () => {
 
     if (loginData.username.trim() === "") {
       newErrors.username = "Username krävs";
-    } /* else if (loginData.username !== "api-answser") {
-      newErrors.username = "användarnamn passar inte";
-    } */
+    }
     if (loginData.password.trim() === "") {
       newErrors.password = "Password krävs";
     }
-    e; /* lse if (loginData.password !== "api-amswer") {
-      newErrors.password = "lösenord passar inte";
-    } */
+    e;
 
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      setSuccessMessage("Login successful!");
+      /*   setSuccessMessage("Login successful!");
       setTimeout(() => {
         setSuccessMessage("");
-        fetchLogin();
+        
       }, 1000);
 
       console.log(fetchLogin);
+    }else {
+      setFailedMessage("Fel inloggningsuppgifter") */
+      fetchLogin();
     }
   };
 
@@ -141,19 +141,22 @@ const Login: React.FC = () => {
         sessionStorage.setItem("token", data.token.toString());
         sessionStorage.setItem("username", loginData.username.toString());
         navigate("/menu");
-        window.alert("Du kan nu bekräfta dina köp från varukorgen");
+        window.alert("Login successful! Du kan nu bekräfta dina köp från varukorgen");
         navigate("/menu");
       } else if (response.ok && cart.length == 0) {
         const data = await response.json();
         console.log("login data", data);
         sessionStorage.setItem("token", data.token.toString());
         sessionStorage.setItem("username", loginData.username.toString());
-        window.alert("Du kan nu välja produkter från menu");
+        window.alert("Login successful! Du kan nu välja produkter från menu");
         navigate("/menu");
       } else {
+        window.alert("fel inloggningsuppgifter");
+
         console.error("Error in POST request");
       }
     } catch (error) {
+      setFailedMessage("Fel inloggningsuppgifter");
       console.error("An error occurred during the POST request:", error);
     }
   };
@@ -206,6 +209,7 @@ const Login: React.FC = () => {
               Logga in
             </button>
             {successMessage && <span className="success">{successMessage}</span>}
+            {failedMessage && <span className="failed">{failedMessage}</span>}
           </form>
 
           <div className="alternatives-links">
