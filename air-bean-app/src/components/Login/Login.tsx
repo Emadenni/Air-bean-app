@@ -116,7 +116,7 @@ const Login: React.FC = () => {
       setTimeout(() => {
         setSuccessMessage("");
         fetchLogin();
-      }, 3000);
+      }, 1000);
 
       console.log(fetchLogin);
     }
@@ -139,6 +139,7 @@ const Login: React.FC = () => {
         const data = await response.json();
         console.log("login data", data);
         sessionStorage.setItem("token", data.token.toString());
+        sessionStorage.setItem("username", loginData.username.toString());
         navigate("/menu");
         window.alert("Du kan nu bekräfta dina köp från varukorgen");
         navigate("/menu");
@@ -147,6 +148,7 @@ const Login: React.FC = () => {
         console.log("login data", data);
         sessionStorage.setItem("token", data.token.toString());
         sessionStorage.setItem("username", loginData.username.toString());
+        window.alert("Du kan nu välja produkter från menu");
         navigate("/menu");
       } else {
         console.error("Error in POST request");

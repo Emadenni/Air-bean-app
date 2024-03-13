@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../pages/history.scss";
 import Header from "../components/Header/Header";
 import profileImg from "../assets/images/profileImg.svg";
@@ -82,6 +83,10 @@ const History = () => {
         <Header />
       </div>
       <div className="history-container">
+        <Link to= {"/menu"}>
+        <p className="toMenuBtn">←</p>
+        </Link>
+       
         <div className="history-header">
           <img src={profileImg} alt="profile-img" className="history-container__img" />
           <h1>{name}</h1>

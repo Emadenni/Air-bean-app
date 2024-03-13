@@ -93,6 +93,8 @@ const Signup: React.FC = () => {
       console.log("users", userData);
       console.log("Form submitted:", formData);
       signupFetch();
+      navigate("/menu"),
+      window.alert("Du kan logga in genom att klicka på menyn uppe till vänster")
     }
   };
 

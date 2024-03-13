@@ -1,8 +1,8 @@
 .history-wrapper {
-    background-color:#2F2926;
-    min-height: 36.688rem;
-    width: 23.438rem;
-    position: relative;
+  background-color: #2f2926;
+  min-height: 36.688rem;
+  width: 23.438rem;
+  position: relative;
 }
 .history-container {
   width: 100%;
@@ -63,61 +63,68 @@
 
   > ul {
     list-style-type: none;
-}
+  }
 }
 
 .orderNrAndDate {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   font-family: "Work Sans", sans-serif;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 120%;
-    color: rgb(255, 255, 255, 0.7);
-    margin: 4px auto;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 120%;
+  color: rgb(255, 255, 255, 0.7);
+  margin: 4px auto;
 
-    >:nth-child(2) {
-        font-weight: 300;
-    }
+  > :nth-child(2) {
+    font-weight: 300;
+  }
 }
 
 .totalOrderSum {
-    display: flex;
-  justify-content:space-between;
+  display: flex;
+  justify-content: space-between;
   font-family: "Work Sans", sans-serif;
-    font-weight: 300;
-    font-size: 12px;
-    line-height: 120%;
-    color: rgb(255, 255, 255, 0.5);
-    padding: px auto;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 120%;
+  color: rgb(255, 255, 255, 0.5);
+  padding: px auto;
 }
 
 .hr {
-    width: 100%;
-    color: rgb(255, 255, 255, 0.08); 
-    margin: 8px 0;
+  width: 100%;
+  color: rgb(255, 255, 255, 0.08);
+  margin: 8px 0;
 }
 
 .bigHr {
-    width: 90%;
-    color: rgb(255, 255, 255, 0.08); 
-    margin: -6px 5px auto 8px;
-    
-    align-self: center;
-    padding: 0 20px;
+  width: 90%;
+  color: rgb(255, 255, 255, 0.08);
+  margin: -6px 5px auto 8px;
+
+  align-self: center;
+  padding: 0 20px;
 }
 
 .totalSum {
-    width: 90%;
-    display: flex;
-    justify-content:space-between;
-    font-family: "Work Sans", sans-serif;
-      font-weight: bold;
-      font-size: 14px;
-      line-height: 120%;
-      color: rgb(255, 255, 255, 0.8);
-     margin-bottom:76px;
-     margin-left: 19px;
-     
-     
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  font-family: "Work Sans", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 120%;
+  color: rgb(255, 255, 255, 0.8);
+  margin-bottom: 76px;
+  margin-left: 19px;
+}
+
+.toMenuBtn {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  background-color: rgb(14, 146, 125, 0.3);
+  padding: 6px;
+  border-radius: 50px;
 }
