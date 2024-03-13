@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useLoggedStore from "../store/isLoggedStore";
-
+import "../pages/Menu"
 const Greetings: React.FC = () => {
   const isLoggedIn = useLoggedStore((state) => state.isLoggedIn);
   const checkLoginStatus = useLoggedStore(state => state.checkLoginStatus);
@@ -11,11 +11,7 @@ const Greetings: React.FC = () => {
   useEffect(() => {
     checkLoginStatus(); 
     
-    if (isLoggedIn) {
-      console.log("onLine");
-    } else {
-      ("offline");
-    }
+  
     const storedUsername = sessionStorage.getItem("username");
     setUsername(storedUsername);
     console.log(storedUsername);
@@ -23,7 +19,7 @@ const Greetings: React.FC = () => {
 
   return (
     <div>
-      <p>Hej, {isLoggedIn===true ? `${username}` : "Gäst"}</p>
+      <p className="greetings-text">Hej, {isLoggedIn===true  ? `${username}` : "Gäst"}</p>
     </div>
   );
 };

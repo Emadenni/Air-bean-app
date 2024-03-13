@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../../components/Signup/signup.scss";
 import useUserDataStore from "../../store/useUserDataStore";
 import logoSmall from "../../assets/images/logoSmall.svg";
-import { create } from "zustand";
-import { User } from "../types";
+
 
 interface FormData {
   name: string;
@@ -81,11 +80,14 @@ const Signup: React.FC = () => {
         email: formData.email,
         username: formData.username,
       };
+      const existingData = JSON.parse(localStorage.getItem("userData") || "[]");
+      const updatedData = [...existingData, newUser];
+      localStorage.setItem("userData", JSON.stringify(updatedData));
       const isUsernameTaken = userData.some((user) => user.username === newUser.username);
       if (!isUsernameTaken) {
         addUser(newUser);
 
-        localStorage.setItem("userData", JSON.stringify([...userData, newUser]));
+        
       }
 
       console.log("users", userData);
@@ -115,10 +117,10 @@ const Signup: React.FC = () => {
           }, 2000);
 
         } else {
-          setSuccessMessage("Konto skapat");
+          setSuccessMessage("Konto skapat. Du kan logga in nu.");
           setTimeout(() => {
             setSuccessMessage("");
-            window.location.reload();
+            
           }, 1000);
          
         }

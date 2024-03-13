@@ -24,8 +24,6 @@ const Login: React.FC = () => {
     checkLoginStatus();
   }, []);
 
-
-
   const [errors, setErrors] = useState<Partial<LoginData>>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -141,10 +139,6 @@ const Login: React.FC = () => {
         const data = await response.json();
         console.log("login data", data);
         sessionStorage.setItem("token", data.token.toString());
-        sessionStorage.setItem("username", loginData.username.toString());
-         
-        
-
         navigate("/menu");
         window.alert("Du kan nu bekräfta dina köp från varukorgen");
         navigate("/menu");
@@ -152,6 +146,7 @@ const Login: React.FC = () => {
         const data = await response.json();
         console.log("login data", data);
         sessionStorage.setItem("token", data.token.toString());
+        sessionStorage.setItem("username", loginData.username.toString());
         navigate("/menu");
       } else {
         console.error("Error in POST request");

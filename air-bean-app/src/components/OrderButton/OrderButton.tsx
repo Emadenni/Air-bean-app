@@ -16,39 +16,6 @@ const OrderButton: React.FC<OrderButtonProps> = ({ emptyCart }: OrderButtonProps
     checkLoginStatus(); 
   }, []); 
 
- /*  const checkLoginStatus = async () => {
-    try {
-      const token = sessionStorage.getItem("token");
-      if (!token) {
-        setIsLoggedIn(false);
-        return;
-      }
-      const response = await fetch("https://airbean-api-xjlcn.ondigitalocean.app/api/user/status", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log("status", data);
-
-        if (data.success) {
-          setIsLoggedIn(true);
-        } else {
-          setIsLoggedIn(false);
-        }
-      } else {
-        setIsLoggedIn(false);
-        console.error("Error in GET request to check login status");
-      }
-    } catch (error) {
-      setIsLoggedIn(false);
-      console.error("An error occurred during the GET request to check login status:", error);
-    }
-  }; */
-
   const handleOrderClick = async () => {
     if (isLoggedIn) {
       await placeOrder();
