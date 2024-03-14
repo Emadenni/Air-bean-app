@@ -45,54 +45,6 @@ const Login: React.FC = () => {
 
   const { cart } = useCartStore();
 
-  const placeOrderByGuest = async () => {
-    try {
-      const response = await fetch("https://airbean-api-xjlcn.ondigitalocean.app/api/beans/order", {
-        method: "POST",
-        body: JSON.stringify({
-          details: {
-            order: cart.map((product) => ({
-              name: product.title,
-              price: product.price,
-            })),
-          },
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        const { eta, orderNr } = data;
-        console.log("ETA:", eta);
-        console.log("Order Number:", orderNr);
-        localStorage.setItem("orderNr", orderNr.toString());
-        sessionStorage.removeItem("eta");
-        sessionStorage.removeItem("orderNr");
-        sessionStorage.setItem("eta", eta.toString());
-        sessionStorage.setItem("orderNr", orderNr.toString());
-      } else {
-        console.error("Error in POST request to place the order");
-      }
-    } catch (error) {
-      console.error("An error occurred during the POST request:", error);
-    }
-  };
-
-  const { emptyCart } = useCartStore();
-  const handleClickFromProfile = () => {
-    const confirm = window.confirm("Vill du bekräfta beställningen i din varukorg?");
-
-    if (confirm) {
-      placeOrderByGuest();
-      emptyCart();
-      navigate("/status");
-    } else {
-      navigate("/menu");
-    }
-  };
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -109,15 +61,6 @@ const Login: React.FC = () => {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      /*   setSuccessMessage("Login successful!");
-      setTimeout(() => {
-        setSuccessMessage("");
-        
-      }, 1000);
-
-      console.log(fetchLogin);
-    }else {
-      setFailedMessage("Fel inloggningsuppgifter") */
       fetchLogin();
     }
   };
@@ -212,17 +155,13 @@ const Login: React.FC = () => {
             {failedMessage && <span className="failed">{failedMessage}</span>}
           </form>
 
-          <div className="alternatives-links">
+          <div className="alternatives-link">
             <p>
               Icke registrerad ännu? <br /> Skapa ett konto{" "}
               <a className="green" onClick={handleSignUpToggle}>
                 här!
               </a>
             </p>
-            <p>eller</p>
-            <a className="green" onClick={handleClickFromProfile}>
-              Fortsätt som gäst.
-            </a>
           </div>
         </section>
       </article>

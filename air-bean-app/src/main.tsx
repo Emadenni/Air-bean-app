@@ -6,7 +6,7 @@ import About from "./pages/About";
 import Cart from "./pages/Cart";
 import Status from "./pages/Status";
 import History from "./pages/History";
-
+import Order from "./pages/Order";
 import Profile from "./pages/Profile";
 
 import "./main.scss";
@@ -38,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: "/status",
     element: <Status />,
+  },
+  {
+    path: "/order",
+    element: <Order/>,
   },
 
   {
