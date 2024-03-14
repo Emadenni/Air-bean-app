@@ -55,3 +55,8 @@ export interface Order {
   orderNr: string;
   orderDate: string;
 }
+
+export interface LoginData {
+  username: string;
+  password: string;
+}

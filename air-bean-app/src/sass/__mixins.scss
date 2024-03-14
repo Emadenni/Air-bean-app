@@ -4,3 +4,10 @@
   justify-content: $justify;
   align-items: $align;
 }
+
+@mixin font($family, $size, $weight, $style) {
+  font-family: $family;
+  font-size: $size;
+  font-weight: $weight;
+  font-style: $style;
+}

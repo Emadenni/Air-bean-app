@@ -1,93 +1,69 @@
+@use "./../sass/" as *;
+
 .about-container {
   height: 66.313rem;
   width: 23.438rem;
   background-color: #f3e4e1;
-  /*  @include flex($justify:center, $align:center); */
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   gap: 30px;
+  @include flex(column, space-between, center);
 
   &__main {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
     height: 64rem;
     padding: 0 0 5px 50px;
     color: #2f2926;
+    @include flex(column, space-between, center);
 
     > h1 {
-      font-family: "PT Serif", serif;
-      font-style: normal;
       line-height: 120%;
-      font-weight: bold;
-      font-size: 42px;
       align-self: flex-start;
       margin-left: -20px;
+      @include font("PT Serif", 42px, bold, normal);
     }
 
     > h2 {
-      font-family: "Work Sans", sans-serif;
       font-optical-sizing: auto;
-      font-style: normal;
-      font-size: 14px;
-      font-weight: 600;
       line-height: 160%;
       margin: 12px 0;
+      @include font("Work Sans", 14px, 600, normal);
     }
 
     > p {
-      font-family: "Work Sans", sans-serif;
       font-optical-sizing: auto;
-      font-style: normal;
-      font-size: 12px;
-      font-weight: 600px;
       line-height: 160%;
-      margin:6px 10px 11px 0;
+      margin: 6px 10px 11px 0;
+      @include font("Work Sans", 12px, 600, normal);
     }
   }
 }
 
 figure {
-  display: flex;
-  flex-direction: column;
   margin-top: 60px;
-  align-items: center;
-
-  >img {
-  width: 74px;
-  margin-right: 58px;
+  @include flex(column, center, center);
+  > img {
+    width: 74px;
+    margin-right: 58px;
   }
 
   figcaption > h3 {
-    font-family: "PT Serif", serif;
-    font-style: normal;
     line-height: 160%;
-    font-weight: bold;
-    font-size: 22px;
     margin-right: 54px;
-    
- 
+    @include font("PT Serif", 22px, bold, normal);
   }
   figcaption > p {
-    font-family: "Work Sans", sans-serif;
-      font-optical-sizing: auto;
-      font-style: normal;
-      font-size: 12px;
-      font-weight: 500px;
-      line-height: 160%;
+    text-align: center;
+    margin-right: 46px;
+    font-optical-sizing: auto;
+    line-height: 160%;
+    @include font("Work Sans", 12px, 500, normal);
   }
 }
 
 .toMenuBtnFromAboutUs {
-transform: translate(114px, -124px);
-background-color: rgb(255, 69, 0, 0.55);
-padding: 14px;
-border-radius: 50px;
-color: #f3e4e1;
-font-size: 22px;
-
+  transform: translate(114px, -124px);
+  background-color: rgb(255, 69, 0, 0.55);
+  padding: 14px;
+  border-radius: 50px;
+  color: #f3e4e1;
+  font-size: 22px;
 }

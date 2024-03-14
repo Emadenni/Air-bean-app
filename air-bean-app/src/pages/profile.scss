@@ -1,12 +1,12 @@
-
+@use "./../sass/" as *;
 .profile-wrapper {
-    background-color:#2F2926;
+    background-color:map-get($theme-colors, "brown");
     min-height: 49.688rem;
     width: 23.438rem;
     position: relative;
 }
 
 .render {
-  background-color: #ffffff;
+  background-color: map-get($theme-colors, "white");
 }
 

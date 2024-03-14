@@ -1,3 +1,5 @@
+@use "./../sass/" as *;
+
 .cart-container {
   position: relative;
   overflow: hidden;
@@ -73,11 +75,10 @@
 .cart-container__list {
   width: 21.313rem;
   min-height: 35.941rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  background-color: map-get($theme-colors, "white");
   gap: 20px;
-  background-color: #ffffff;
+  @include flex(column, center);
+  
   > h1 {
     font-size: 32px;
     text-align: center;
@@ -86,16 +87,13 @@
 }
 
 .cart-container__list ul {
-  display: flex;
-  flex-direction: column;
   gap: 30px;
   list-style-type: none;
   padding: 15px;
-  color: #2f2926;
-  font-family: "PT Serif", serif;
-  font-weight: bold;
-  font-style: normal;
+  color: map-get($theme-colors, "brown");
   margin-bottom: 15px;
+  @include flex(column);
+  @include font("PT Serif", inherit, bold, normal);
 }
 
 .arrow-up {
@@ -105,37 +103,27 @@
 }
 
 .cart-container-total {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
+  @include flex(default, space-between, start);
   font-weight: 900;
   line-height: 120%;
   font-size: 23px;
   padding: 15px;
   &__dots {
     color: rgb(0, 0, 0, 0.4);
-    /* margin-top: 3px; */
     margin-left: -110px;
   }
 
   &__text {
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
     margin-bottom: 20px;
-    font-family: "PT Serif", serif;
-    font-weight: bold;
-    font-style: normal;
     line-height: 120%;
+    @include flex(column);
+    @include font("PT Serif", 23px, bold, normal);
 
     > span {
-      font-family: "Work Sans", sans-serif;
       font-optical-sizing: auto;
-      font-size: 14px;
-      font-style: normal;
-      font-size: 12px;
-      font-weight: 400;
       line-height: 130%;
+      @include font("Work Sans", 12px, 400, normal);
     }
   }
 }
@@ -143,16 +131,13 @@
 .toCashButton {
   width: 80%;
   align-self: center;
-  font-family: "PT Serif", serif;
-  font-weight: bold;
-  font-style: normal;
-  color: #ffffff;
-  font-size: 24px;
-  background-color: #2f2926;
+  color: map-get($theme-colors, "white");
+  background-color: map-get($theme-colors, "brown");
   padding: 10px;
   margin-bottom: 40px;
   margin-left: 36px;
   border-radius: 50px;
+  @include font("PT Serif", 24px, bold, normal);
 }
 
 .remove-icon {
@@ -166,12 +151,9 @@
   width: 40%;
   align-self: center;
   border-radius: 10px;
-  font-family: "Work Sans", sans-serif;
+  @include font("Work Sans", 12px, default, normal);
   font-optical-sizing: auto;
-  font-size: 11px;
-  font-style: normal;
-  font-size: 12px;
-  color: #2f2926;
+  color: map-get($theme-colors, "brown");
   padding: 3px;
   cursor: pointer;
 }

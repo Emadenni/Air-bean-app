@@ -1,48 +1,31 @@
-
+@use "./../sass/" as *;
 
 .home-container {
   height: 41.688rem;
   width: 23.438rem;
   background-color: #38846d;
-  /*  @include flex($justify:center, $align:center); */
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  
+  @include flex(column, center, center);
 }
 
 .logo-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   position: relative;
+  @include flex(column, center, center);
   &__image {
     width: 64px;
     z-index: 10;
-   margin-top: 12px;
+    margin-top: 12px;
   }
 
   &__text > h1 {
-    color: #ffffff;
-    font-size: 42px;
-    font-family: "Rufina", serif;
-    font-weight: 700;
-    font-style: normal;
-   
+    color: map-get($theme-colors, "white");
+    @include font("Rufina", 42px, 700, normal);
   }
 
   &__text > h2 {
-    color: #ffffff;
-    font-family: "Work Sans", sans-serif;
+    color: map-get($theme-colors, "white");
     font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 9px;
-    text-align: center;
     letter-spacing: 2.7px;
+    @include font("Work Sans", 9px, 400, normal);
   }
 
   &__frame-left {
@@ -51,15 +34,15 @@
     position: absolute;
     right: 120.5px;
     transform: translateY(-404px);
-   z-index: 1;
+    z-index: 1;
   }
   &__frame-right {
     height: 41.688rem;
     width: 8.938rem;
     position: absolute;
-   left: 146.5px;
+    left: 146.5px;
     transform: translateY(-405px);
-   z-index: 1;
+    z-index: 1;
   }
 }
 

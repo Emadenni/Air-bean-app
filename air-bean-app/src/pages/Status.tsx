@@ -8,7 +8,7 @@ const Status = () => {
   const isLoggedIn = useLoggedStore((state) => state.isLoggedIn);
   const orderNr = sessionStorage.getItem("orderNr");
   const [currentEta, setCurrentEta] = useState(null);
-  const [showOverlay, setShowOverlay] = useState(false); // Stato per mostrare l'overlay
+  const [showOverlay, setShowOverlay] = useState(false);
 
   useEffect(() => {
     const fetchCurrentEta = async () => {
