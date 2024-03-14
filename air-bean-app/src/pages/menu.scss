@@ -49,7 +49,10 @@
       @include font("Work Sans", 12px, default, normal);
     }
   }
-
+  
+  .menu-list__item-desc {
+    @include font("Work Sans", 12px, 400, normal);
+  }
   aside {
     width: 200px;
     position: relative;

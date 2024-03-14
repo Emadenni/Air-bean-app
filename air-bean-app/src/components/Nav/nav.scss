@@ -1,37 +1,35 @@
+@use "./../../sass/" as *;
+
 .nav-container {
   width: 23.438rem;
   min-height: 41.688rem;
-  background-color: #2f2926;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  background-color: map-get($theme-colors, "brown");
   gap: 140px;
   padding: 16px;
   position: absolute;
   top: 80px;
   z-index: 20000;
+  @include flex(column, flex-start, center);
 
   &__list {
     max-height: 160px;
     list-style-type: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    @include flex(column, space-between, default);
 
     > li {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       gap: 26px;
+      @include flex(column, default, center);
+
+      > hr {
+        opacity: 0.2;
+        margin-bottom: 16px;
+        width: 42px;
+      }
 
       > a {
-        color: #ffffff;
-        font-family: "PT Serif", serif;
-        font-weight: bold;
-        font-style: normal;
-        font-size: 32px;
+        color: map-get($theme-colors, "white");
         line-height: 120%;
+        @include font("PT Serif", 32px, bold, normal);
       }
     }
   }
@@ -40,12 +38,6 @@
     align-self: flex-start;
     cursor: pointer;
   }
-}
-
-.hr {
-  opacity: 0.2;
-  margin-bottom: 26px;
-  width: 48px;
 }
 
 .nav-container__list li:hover {
@@ -58,9 +50,6 @@
   left: 260px;
   padding: 6px;
   border-radius: 6px;
-  font-family: "PT Serif", serif;
-  font-weight: bold;
-  font-style: normal;
-  font-size: 22px;
   line-height: 120%;
+  @include font("PT Serif", 22px, bold, normal);
 }

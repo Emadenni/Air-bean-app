@@ -1,9 +1,5 @@
+@use "./../../sass/" as *;
 @import url("https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-
-.inMenu .headerIcons {
-  transform: translateY(-80px);
-  height: 0;
-}
 
 .inMenu {
   height: 110px;
@@ -22,7 +18,10 @@
   margin-left: 17px;
 }
 
-
+.inMenu .headerIcons {
+  transform: translateY(-80px);
+  height: 0;
+}
 
 .inProfile .headerIcons {
   transform: translateY(-103px);
@@ -36,11 +35,9 @@
 .headerIcons {
   width: 97%;
   z-index: 2;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-left: 15px;
   cursor: pointer;
+  @include flex(default, space-between, center);
 
   &__carticon {
     position: relative;
@@ -53,18 +50,14 @@
     border-radius: 50%;
     padding: 1px;
     background-color: #e5674e;
-    font-size: 12px;
     padding: 12px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
+    color: map-get($theme-colors, "white");
     position: absolute;
     bottom: 2px;
     left: 320px;
-    font-family: "PT Serif", serif;
-    font-weight: bold;
-    font-style: normal;
+    @include font("PT Serif", 12px, bold, normal);
+    @include flex(default, center, center);
   }
 }
 
@@ -93,5 +86,5 @@
 }
 
 .clicked {
-color: yellow;
+  color: yellow;
 }

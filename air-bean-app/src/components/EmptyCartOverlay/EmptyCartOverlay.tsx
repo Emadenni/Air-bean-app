@@ -14,7 +14,7 @@ const CartOverlay = () => {
 
   return (
     <div className={`cart-overlay ${isCartEmpty ? 'active' : ''}`}>
-      {isCartEmpty && <div> <h2>The cart is empty</h2> <p>Please, choose a product</p> </div>}
+      {isCartEmpty && <div> <h2>Varukorgen är tom</h2> <p>Välj en produkt</p> </div>}
     </div>
   );
 };

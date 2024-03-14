@@ -19,8 +19,7 @@ const Menu = () => {
         const response = await fetch("https://airbean-api-xjlcn.ondigitalocean.app/api/beans/");
         const jsonData = await response.json();
         setProducts(jsonData.menu);
-        /* console.log("prod", products); */
-      } catch (error) {
+       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
