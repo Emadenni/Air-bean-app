@@ -1,6 +1,6 @@
 // Header.tsx
-import React, { useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import top from "../../assets/images/top.png";
 import navicon from "../../assets/images/navicon.svg";
 import carticon from "../../assets/images/carticon.png";
@@ -30,8 +30,6 @@ const Header = () => {
     }else {
       window.history.replaceState(null, "", "/");
     }
-
-    
   };
 
   const handleToggleNav = () => {

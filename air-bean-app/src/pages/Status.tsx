@@ -6,7 +6,6 @@ import useLoggedStore from "../store/isLoggedStore";
 
 const Status = () => {
   const isLoggedIn = useLoggedStore((state) => state.isLoggedIn);
-  const checkLoginStatus = useLoggedStore((state) => state.checkLoginStatus);
   const orderNr = sessionStorage.getItem("orderNr");
   const [currentEta, setCurrentEta] = useState(null);
   const [showOverlay, setShowOverlay] = useState(false); // Stato per mostrare l'overlay
@@ -25,10 +24,6 @@ const Status = () => {
         if (response.ok) {
           const data = await response.json();
           setCurrentEta(data.eta);
-
-          if (currentEta === 0 || currentEta ===undefined) {
-            setShowOverlay(true);
-          }
         } else {
           console.error("Error fetching eta:");
         }
@@ -40,6 +35,13 @@ const Status = () => {
     fetchCurrentEta();
   }, []);
 
+  useEffect(() => {
+    if (currentEta === 0 || currentEta === undefined || currentEta === null) {
+      setShowOverlay(true);
+    } else {
+      setShowOverlay(false);
+    }
+  }, [currentEta]);
   return (
     <div className="status-container">
       <h1>Current Order</h1>
@@ -58,7 +60,7 @@ const Status = () => {
             <h2>Alla beställningar har levererats</h2>
             <h3>Tack för att du valde oss</h3>
             <Link to="/menu">
-              <button>Tillbaka till startsidan</button>
+              <button className="status-container__button overlay-button">Till startsidan</button>
             </Link>
           </div>
         </div>

@@ -77,17 +77,18 @@
     top: 0px;
     width: 24rem;
     height: 41.9rem;
-    background-color: rgb(255, 255, 255,0.82);
+    background-color: rgb(47, 41, 38, 0.93);
     display: flex;
     justify-content: center;
     align-items: center;
     &__content {
+        height: 300px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
         text-align: center;
-        color: #2F2926;
+        color: #d2a2a2;
         margin-bottom: 80px;
 
         >h2  {
@@ -107,5 +108,9 @@
                 font-size: 18px;
               }
         }
+    }
+
+    .overlay-button {
+        font-size: 22px;
     }
     

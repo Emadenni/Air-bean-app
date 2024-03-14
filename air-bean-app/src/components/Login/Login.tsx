@@ -5,17 +5,17 @@ import Signup from "../Signup/Signup";
 import { useState, useEffect } from "react";
 import { useCartStore } from "../../store/cartStore";
 import useLoggedStore from "../../store/isLoggedStore";
-
-interface LoginData {
-  username: string;
-  password: string;
-}
+import { LoginData } from "../types";
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
+  const { cart } = useCartStore();
+  const [showSignUp, setShowSignUp] = useState(false);
   const isLoggedIn = useLoggedStore((state) => state.isLoggedIn);
   const checkLoginStatus = useLoggedStore((state) => state.checkLoginStatus);
-  const [successMessage, setSuccessMessage] = useState("");
+  const [successMessage] = useState("");
   const [failedMessage, setFailedMessage] = useState("");
+  const [errors, setErrors] = useState<Partial<LoginData>>({});
   const [loginData, setLoginData] = useState<LoginData>({
     username: "",
     password: "",
@@ -24,8 +24,6 @@ const Login: React.FC = () => {
   useEffect(() => {
     checkLoginStatus();
   }, []);
-
-  const [errors, setErrors] = useState<Partial<LoginData>>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -36,14 +34,9 @@ const Login: React.FC = () => {
     }));
   };
 
-  const navigate = useNavigate();
-  const [showSignUp, setShowSignUp] = useState(false);
-
   const handleSignUpToggle = () => {
     setShowSignUp(!showSignUp);
   };
-
-  const { cart } = useCartStore();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -56,8 +49,6 @@ const Login: React.FC = () => {
     if (loginData.password.trim() === "") {
       newErrors.password = "Password krävs";
     }
-    e;
-
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
