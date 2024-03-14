@@ -1,7 +1,8 @@
 import "../pages/about.scss";
+import { Link } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer.";
-import  vd  from "../assets/images/vd.png"
+import vd from "../assets/images/vd.png";
 const About = () => {
   return (
     <div className="about-container">
@@ -10,10 +11,14 @@ const About = () => {
       </div>
 
       <main className="about-container__main">
+        <Link to={"/menu"}>
+          <p className="toMenuBtnFromAboutUs">←</p>
+        </Link>
         <h1>Vårt kaffe</h1>
         <h2>
           Pumpkin spice mug, barista cup, sit macchiato, kopi-luwak, doppio, grounds dripper, crema, strong whipped,
-          variety extra iced id lungo half and half mazagran. <br />Pumpkin spice.
+          variety extra iced id lungo half and half mazagran. <br />
+          Pumpkin spice.
         </h2>
         <p>
           Que dark fair trade, spoon decaffeinated, barista wings whipped, as rich aftertaste, con panna milk black,

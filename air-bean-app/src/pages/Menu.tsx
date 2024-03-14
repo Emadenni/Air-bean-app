@@ -11,7 +11,6 @@ import { cartProduct } from "../components/types";
 
 const Menu = () => {
   const [products, setProducts] = useState([]);
-
   const { increment } = useCountStore();
 
   useEffect(() => {

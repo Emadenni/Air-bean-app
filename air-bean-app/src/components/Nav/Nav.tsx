@@ -21,7 +21,7 @@ const Nav: React.FC<NavProps> = ({ handleMenuToggle }: NavProps) => {
       navigate("/profile");
     } else {
       sessionStorage.removeItem("token");
-
+      navigate("/profile");
       setLoginToggle("Login");
     }
   };

@@ -17,12 +17,12 @@ const Greetings: React.FC = () => {
   });
 
   return (
-    <div>
-      <p className="greetings-text">
-        Hej,{" "}
+    <div className="greetings-container" style={{ backgroundColor: isLoggedIn ? "rgb(100, 134, 88, 0.3)" : "rgb(240, 164, 123,0.5)" }}>
+      <p className="greetings-box">
+        
         {isLoggedIn === true ? (
           <>
-            {username}
+           Hej,{" "} {username} {<span className="logged">•</span>}
 
             <Link to="/profile/history">
               <img className="smallProfileImg" src={profileImg} alt="profile" />
@@ -30,7 +30,10 @@ const Greetings: React.FC = () => {
           </>
         ) : (
        <span className="guest">
-        Gäst <img className="smallProfileImg" src={guestImg} alt="guest" />
+        Hej,{" "}Gäst {<span className="unlogged">  •</span>} 
+        <Link to="/profile">
+        <img className="smallProfileImg" src={guestImg} alt="guest" />
+        </Link>
         </span>
         )}
       </p>

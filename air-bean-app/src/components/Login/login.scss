@@ -7,7 +7,6 @@
   color: #2f2926;
   position: relative;
 
-
   &__wrapper {
     height: 30.438rem;
     display: flex;
@@ -117,23 +116,43 @@ a {
 
 .alternatives-links {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   align-items: center;
   gap: 12px;
   margin-top: 30px;
 
-  :nth-child(1), :nth-child(3) {
+  :nth-child(1),
+  :nth-child(3) {
     font-family: "Work Sans", sans-serif;
     font-optical-sizing: auto;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    border: solid 1px #2f2926 ;
+    border: solid 1px #2f2926;
     padding: 6px;
     width: 120%;
     text-align: center;
     border-radius: 5px;
-    
+  }
+  :nth-child(1) {
+    animation: sparkle 4s infinite linear;
+  }
+}
+@keyframes sparkle {
+  0% {
+    background-color: rgb(156, 226, 215), 0, 4;
+  }
+  25% {
+    background-color: rgb(133, 176, 131), 0, 4;
+  }
+  50% {
+    background-color: #0000ff33;
+  }
+  80% {
+    background-color: rgba(192, 192, 234, 0.2);
+  }
+  100% {
+    box-shadow: -4px -5px 47px 0px rgba(0, 0, 0, 0.75);
   }
 }
 
@@ -155,5 +174,5 @@ a {
   font-size: 16px;
   font-style: bold;
   font-weight: 400;
-  border: solid 1px #2f2926 ;
+  border: solid 1px #2f2926;
 }

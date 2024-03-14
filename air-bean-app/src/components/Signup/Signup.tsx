@@ -4,7 +4,6 @@ import "../../components/Signup/signup.scss";
 import useUserDataStore from "../../store/useUserDataStore";
 import logoSmall from "../../assets/images/logoSmall.svg";
 
-
 interface FormData {
   name: string;
   email: string;
@@ -80,22 +79,18 @@ const Signup: React.FC = () => {
         email: formData.email,
         username: formData.username,
       };
+
       const existingData = JSON.parse(localStorage.getItem("userData") || "[]");
       const updatedData = [...existingData, newUser];
       localStorage.setItem("userData", JSON.stringify(updatedData));
       const isUsernameTaken = userData.some((user) => user.username === newUser.username);
       if (!isUsernameTaken) {
         addUser(newUser);
-
-        
+        console.log("users", userData);
+        console.log("Form submitted:", formData);
       }
-
-      console.log("users", userData);
-      console.log("Form submitted:", formData);
-      signupFetch();
-      navigate("/menu"),
-      window.alert("Du kan logga in genom att klicka på menyn uppe till vänster")
     }
+    signupFetch();
   };
 
   const signupFetch = async () => {
@@ -113,18 +108,17 @@ const Signup: React.FC = () => {
       if (response.ok) {
         const kontoData = await response.json();
         if (kontoData.success === false) {
-        setFailedMessage("Användaren är redan registrerad");
-        setTimeout(() => {
-          setFailedMessage("");
+          setFailedMessage("Användaren är redan registrerad");
+          setTimeout(() => {
+            setFailedMessage("");
           }, 2000);
-
         } else {
           setSuccessMessage("Konto skapat. Du kan logga in nu.");
           setTimeout(() => {
             setSuccessMessage("");
-            
-          }, 1000);
-         
+            navigate("/menu");
+            window.alert("Du kan logga in genom att klicka på menyn uppe till vänster");
+          }, 2000);
         }
 
         console.log("kontot skapades", kontoData);

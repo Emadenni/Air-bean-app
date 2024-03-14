@@ -37,6 +37,7 @@
   align-items: center;
   gap: 40px;
   max-width: 311px;
+  min-height: 500px;
 
   &__item {
     display: flex;
@@ -102,34 +103,49 @@ h1 {
   transform: translateX(-130px);
 }
 
-.greetings-text {
+.greetings-container {
+  width: 80%;
+}
+
+.greetings-box {
   font-family: "Work Sans", sans-serif;
   font-optical-sizing: auto;
-  font-size: 22px;
+  font-size: 20px;
   font-style: normal;
   color: #2f2926;
- margin-left: 70px;
+
   display: flex;
- width: 170px;
-  justify-content: space-evenly;
+  min-width: 270px;
+  justify-content: space-between;
+  padding:2px 22px;
   align-items: center;
-  color: rgb(14, 146, 125);;
+  color: rgb(14, 146, 125);
   text-shadow: 2px 2px 2px #b4b0af;
-
-
-
 }
 
 .smallProfileImg {
   width: 27px;
-  margin-left: 40px;
   cursor: pointer;
 }
 
 .guest {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding-right: 20px;
+  min-width: 250px;
+ display: flex;
+justify-content: space-evenly;
+align-items: center;
   
 
+  
+}
+
+.logged {
+  color: green;
+  font-size: 50px;
+  margin-left: -20px;
+}
+.unlogged {
+  color: red;
+  font-size: 50px;
+  margin-left: -30px;
 }
