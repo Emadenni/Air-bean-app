@@ -20,7 +20,7 @@ const History = () => {
       const fetchOrderHistory = async () => {
         try {
           const token = sessionStorage.getItem("token");
-          const response = await fetch("https://airbean-api-xjlcn.ondigitalocean.app/api/user/history", {
+          const response = await fetch("https://airbean-9pcyw.ondigitalocean.app/api/user/history", {
             method: "GET",
             headers: {
               Authorization: `Bearer ${token}`,

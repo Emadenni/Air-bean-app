@@ -14,7 +14,7 @@ const useLoggedStore = create<UserState>((set) => ({
         set({ isLoggedIn: false });
         return;
       }
-      const response = await fetch("https://airbean-api-xjlcn.ondigitalocean.app/api/user/status", {
+      const response = await fetch("https://airbean-9pcyw.ondigitalocean.app/api/user/status", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
