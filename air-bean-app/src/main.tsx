@@ -1,5 +1,6 @@
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import About from "./pages/About";
@@ -11,8 +12,7 @@ import Profile from "./pages/Profile";
 
 import "./main.scss";
 
-
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <Home />,
@@ -41,17 +41,17 @@ const router = createBrowserRouter([
   },
   {
     path: "/order",
-    element: <Order/>,
+    element: <Order />,
   },
 
   {
     path: "/profile",
     element: <Profile />,
-   },
+  },
   {
     path: "/profile/history",
-    element: <History/>,
-   },
+    element: <History />,
+  },
 ]);
 
 createRoot(document.getElementById("root")!).render(<RouterProvider router={router} />);
