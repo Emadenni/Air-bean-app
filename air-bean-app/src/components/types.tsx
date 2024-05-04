@@ -1,5 +1,3 @@
-import React from "react";
-
 export type NavItemType = {
   id: number;
   title: string;
@@ -26,19 +24,19 @@ export interface cartProduct {
   id: string;
   title: string;
   price: number;
-  quantity:number;
+  quantity: number;
 }
 
 export interface CountState {
   count: number;
   increment: () => void;
   decrement: () => void;
-  resetCounts: () => void; 
+  resetCounts: () => void;
 }
 export interface OrderState {
-  eta: number,
-  orderNr:string
-  setOrderData: (eta:number, orderNr: string) => void; 
+  eta: number;
+  orderNr: string;
+  setOrderData: (eta: number, orderNr: string) => void;
 }
 
 export interface User {
@@ -48,7 +46,6 @@ export interface User {
 }
 
 export type UserData = User[];
-
 
 export interface Order {
   total: number;
