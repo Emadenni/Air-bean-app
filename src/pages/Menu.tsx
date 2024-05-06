@@ -16,7 +16,7 @@ const Menu = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://airbean-api-xjlcn.ondigitalocean.app/api/beans/");
+        const response = await fetch("https://airbean-9pcyw.ondigitalocean.app/api/beans/");
         const jsonData = await response.json();
         setProducts(jsonData.menu);
        } catch (error) {

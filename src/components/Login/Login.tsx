@@ -58,7 +58,7 @@ const Login: React.FC = () => {
 
   const fetchLogin = async () => {
     try {
-      const response = await fetch("https://airbean-api-xjlcn.ondigitalocean.app/api/user/login", {
+      const response = await fetch("https://airbean-9pcyw.ondigitalocean.app/api/user/login", {
         method: "POST",
         body: JSON.stringify({
           username: loginData.username,

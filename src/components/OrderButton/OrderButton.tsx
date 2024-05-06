@@ -44,7 +44,7 @@ const OrderButton: React.FC<OrderButtonProps> = ({ emptyCart }: OrderButtonProps
 
   const placeOrder = async () => {
     try {
-      const response = await fetch("https://airbean-api-xjlcn.ondigitalocean.app/api/beans/order", {
+      const response = await fetch("https://airbean-9pcyw.ondigitalocean.app/api/beans/order", {
         method: "POST",
         body: JSON.stringify({
           details: {
@@ -82,7 +82,7 @@ const OrderButton: React.FC<OrderButtonProps> = ({ emptyCart }: OrderButtonProps
   };
   const placeOrderAsGuest = async () => {
     try {
-      const response = await fetch("https://airbean-api-xjlcn.ondigitalocean.app/api/beans/order", {
+      const response = await fetch("https://airbean-9pcyw.ondigitalocean.app/api/beans/order", {
         method: "POST",
         body: JSON.stringify({
           details: {

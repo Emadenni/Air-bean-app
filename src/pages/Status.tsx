@@ -14,7 +14,7 @@ const Status = () => {
     const fetchCurrentEta = async () => {
       try {
         const orderNr = sessionStorage.getItem("orderNr");
-        const response = await fetch(`https://airbean-api-xjlcn.ondigitalocean.app/api/beans/order/status/${orderNr}`, {
+        const response = await fetch(`https://airbean-9pcyw.ondigitalocean.app/api/beans/order/status/${orderNr}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
